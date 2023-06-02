@@ -12,13 +12,28 @@ use App\Models\DetailPakan;
 use App\Models\Pengeluaran;
 use App\Models\DetailVaksin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PengeluaranController extends Controller
 {
     public function index()
     {
         $pengeluaran = Pengeluaran::all();
+
+        // $totalpengeluaran = DB::table('tb_pengeluaran')
+        //     ->join('tb_detail_pengeluaran_ayam', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_ayam.id_pengeluaran')
+        //     ->join('tb_ayam', 'tb_detail_pengeluaran_ayam.id_ayam', '=', 'tb_ayam.id')
+        //     ->join('tb_detail_pengeluaran_pakan', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_pakan.id_pengeluaran')
+        //     ->join('tb_pakan', 'tb_detail_pengeluaran_pakan.id_pakan', '=', 'tb_pakan.id')
+        //     ->join('tb_detail_pengeluaran_vaksin', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_vaksin.id_pengeluaran')
+        //     ->join('tb_vaksin', 'tb_detail_pengeluaran_vaksin.id_vaksin', '=', 'tb_vaksin.id')
+        //     ->join('tb_detail_pengeluaran_gaji', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_gaji.id_pengeluaran')
+        //     ->join('tb_gaji', 'tb_detail_pengeluaran_gaji.id_gaji', '=', 'tb_gaji.id')
+        //     ->select('tb_pengeluaran.*', DB::raw('SUM(tb_ayam.total_harga) as total_ayam'), DB::raw('SUM(tb_pakan.total_harga) as total_pakan'), DB::raw('SUM(tb_vaksin.total_biaya) as total_vaksin'), DB::raw('SUM(tb_gaji.gaji) as total_gaji'))
+        //     ->groupBy('tb_pengeluaran.id')->get();
+
         return view('admin.pages.datapengeluaran', [
+            // 'totalpengeluaran' => $totalpengeluaran,
             'pengeluaran' => $pengeluaran
         ]);
     }
@@ -230,7 +245,10 @@ class PengeluaranController extends Controller
             'tanggal' => $request->tanggal,
         ]);
 
-        return redirect('/datapengeluaran')->with('create', 'Data Pengeluaran Berhasil Ditambahkan!');
+        // $cekidpengeluaran = Pengeluaran::all()->last();
+        // $id_pengeluaran = $cekidpengeluaran->id;
+
+        return redirect('/datapengeluaran/')->with('create', 'Data Pengeluaran Berhasil Ditambahkan!');
     }
 
 

@@ -1,12 +1,12 @@
 @extends('admin.layout.main')
 
-@section('title', 'Data Pengeluaran')
+@section('title', 'Data Pendapatan')
 
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="mb-2 page-title">Data Pengeluaran</h2>
+                <h2 class="mb-2 page-title">Data Pendapatan</h2>
                 <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool,
                     built upon the foundations of progressive enhancement, that adds all of these advanced features to any
                     HTML table. </p>
@@ -44,10 +44,8 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            {{-- <th>Total Ayam</th>
-                                            <th>Total Pakan</th>
-                                            <th>Total Vaksin</th>
-                                            <th>Total Gaji</th> --}}
+                                            <th>Customer</th>
+                                            <th>Payment</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -55,24 +53,13 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($pengeluaran as $data)
+                                        @foreach ($datapendapatan as $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $data->tanggal }}</td>
-                                                {{-- <td>{{ number_format($data->total_ayam) }}</td>
-                                                <td>{{ number_format($data->total_pakan) }}</td>
-                                                <td>{{ number_format($data->total_vaksin) }}</td>
-                                                <td>{{ number_format($data->total_gaji) }}</td> --}}
+                                                <td>{{ $data->distribusi->tanggal }}</td>
+                                                <td>{{ $data->distribusi->customer }}</td>
+                                                <td>Rp. {{ number_format($data->distribusi->payment) }}</td>
                                                 <td>
-                                                    <a class="btn btn-primary btn-sm"
-                                                        href="/datapengeluaran/{{ $data->id }}">Detail</a>
-
-                                                    {{-- <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                        data-target="#detailModal{{ $data->id }}">Detail</button> --}}
-
-                                                    <button class="btn btn-warning btn-sm" data-toggle="modal"
-                                                        data-target="#editModal{{ $data->id }}">Edit</button>
-
                                                     <button class="btn btn-danger btn-sm" data-toggle="modal"
                                                         data-target="#deleteModal{{ $data->id }}">Delete</button>
 
@@ -94,7 +81,8 @@
                                                         <div class="modal-body">
                                                             Yakin Ingin Menghapus Data?
                                                         </div>
-                                                        <form action="/datapengeluaran/{{ $data->id }}" method="post">
+                                                        <form action="/deleteiddistribusi/{{ $data->distribusi->id }}"
+                                                            method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <div class="modal-footer">
@@ -109,7 +97,7 @@
                                             </div>
 
                                             <!-- Edit Modal -->
-                                            <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1"
+                                            {{-- <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1"
                                                 role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -120,12 +108,10 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form action="/datapengeluaran/{{ $data->id }}" method="POST">
+                                                        <form action="/datapendapatan/{{ $data->id }}" method="POST">
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="modal-body">
-
-
                                                                 <div class="form-group">
                                                                     <label for="recipient-name"
                                                                         class="col-form-label">Tanggal
@@ -134,9 +120,6 @@
                                                                         name="tanggal" class="form-control"
                                                                         id="recipient-name">
                                                                 </div>
-
-
-
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn mb-2 btn-danger"
@@ -147,7 +130,7 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -163,24 +146,38 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/datapengeluaran" method="POST">
+                                            <form action="/addiddistribusi" method="POST">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="modal-body">
 
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Tanggal
+
+                                                    <div hidden class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Id Pendapatan
                                                         </label>
-                                                        <input type="date" value="" name="tanggal"
-                                                            class="form-control" id="recipient-name">
+                                                        <input type="text" value="{{ $pendapatan->id }}"
+                                                            name="id_pendapatan" class="form-control" id="recipient-name">
                                                     </div>
 
+                                                    <div class="form-group">
+                                                        <label for="simple-select2">Data Distribusi</label>
+                                                        <select name="id_distribusi" class="form-control">
+                                                            <option selected disabled>Pilih Data Distribusi</option>
+                                                            @foreach ($tampildatadistribusi as $distribusi)
+                                                                <option value="{{ $distribusi->id }}">
+                                                                    {{ $distribusi->customer }} -
+                                                                    {{ $distribusi->tanggal }}
+                                                                    - Rp. {{ number_format($distribusi->payment) }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn mb-2 btn-danger"
                                                         data-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn mb-2 btn-success">Save
-                                                    </button>
+                                                        changes</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -270,7 +267,6 @@
     </script>
 @endsection
 
-
 @section('sweetalert')
     @if (Session::get('update'))
         <script>
@@ -304,6 +300,15 @@
             Swal.fire(
                 'Success',
                 'Data Gagal Ditambahkan',
+                'error'
+            )
+        </script>
+    @endif
+    @if (Session::get('sudahada'))
+        <script>
+            Swal.fire(
+                'Error',
+                'Data Sudah Ada',
                 'error'
             )
         </script>

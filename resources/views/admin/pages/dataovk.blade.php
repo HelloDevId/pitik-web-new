@@ -63,8 +63,8 @@
                                                 <td>{{ $data->tanggal_ovk }}</td>
                                                 <td>{{ $data->jenis_ovk }}</td>
                                                 <td>{{ $data->jumlah_ayam }}</td>
-                                                <td>{{ number_format($data->biaya_ovk) }}</td>
-                                                <td>{{ number_format($data->total_biaya) }}</td>
+                                                <td>Rp. {{ number_format($data->biaya_ovk) }}</td>
+                                                <td>Rp. {{ number_format($data->total_biaya) }}</td>
                                                 <td>{{ $data->next_ovk }}</td>
                                                 <td>
 

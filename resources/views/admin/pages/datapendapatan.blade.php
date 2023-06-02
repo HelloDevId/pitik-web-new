@@ -43,10 +43,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tanggal Periode</th>
-                                            <th>Pemasukan</th>
-                                            <th>Pengeluaran</th>
-                                            <th>Pendapatan</th>
+                                            <th>Tanggal</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -58,10 +55,9 @@
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->tanggal }}</td>
-                                                <td>{{ $data->pemasukan }}</td>
-                                                <td>{{ $data->pengeluaran }}</td>
-                                                <td>{{ $data->pendapatan }}</td>
                                                 <td>
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="/datapendapatan/{{ $data->id }}">Detail</a>
 
                                                     <button class="btn btn-warning btn-sm" data-toggle="modal"
                                                         data-target="#editModal{{ $data->id }}">Edit</button>
@@ -125,28 +121,6 @@
                                                                         name="tanggal" class="form-control"
                                                                         id="recipient-name">
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label for="recipient-name"
-                                                                        class="col-form-label">Pemasukan</label>
-                                                                    <input type="text" value="{{ $data->pemasukan }}"
-                                                                        name="pemasukan" class="form-control"
-                                                                        id="recipient-name">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="recipient-name"
-                                                                        class="col-form-label">Pengeluaran</label>
-                                                                    <input type="text" value=" {{ $data->pengeluaran }}"
-                                                                        name="pengeluaran" class="form-control"
-                                                                        id="recipient-name">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="recipient-name"
-                                                                        class="col-form-label">Pendapatan</label>
-                                                                    <input type="text" value="{{ $data->pendapatan }}"
-                                                                        name="pendapatan" class="form-control"
-                                                                        id="recipient-name">
-                                                                </div>
-
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn mb-2 btn-danger"
@@ -183,25 +157,6 @@
                                                         <input type="date" value="" name="tanggal"
                                                             class="form-control" id="recipient-name">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name"
-                                                            class="col-form-label">Pemasukan</label>
-                                                        <input type="text" value="" name="pemasukan"
-                                                            class="form-control" id="recipient-name">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name"
-                                                            class="col-form-label">Pengeluaran</label>
-                                                        <input type="text" value="" name="pengeluaran"
-                                                            class="form-control" id="recipient-name">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name"
-                                                            class="col-form-label">Pendapatan</label>
-                                                        <input type="text" value="" name="pendapatan"
-                                                            class="form-control" id="recipient-name">
-                                                    </div>
-
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn mb-2 btn-danger"

@@ -57,7 +57,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->ayam->tanggal_masuk }}</td>
                                                 <td>{{ $data->ayam->total_ayam }}</td>
-                                                <td>{{ number_format($data->ayam->total_harga) }}</td>
+                                                <td>Rp. {{ number_format($data->ayam->total_harga) }}</td>
                                                 <td>
                                                     {{-- <a class="btn btn-primary btn-sm"
                                                         href="/detail-pengeluaran/{{ $data->id }}">Detail</a> --}}
@@ -195,7 +195,7 @@
                                                             @foreach ($tampildataayam as $ayam)
                                                                 <option value="{{ $ayam->id }}">
                                                                     {{ $ayam->tanggal_masuk }} - {{ $ayam->total_ayam }}
-                                                                    Ayam - {{ number_format($ayam->total_harga) }}
+                                                                    Ayam - Rp. {{ number_format($ayam->total_harga) }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -274,7 +274,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->pakan->pembelian }}</td>
                                                 <td>{{ $data->pakan->jenis_pakan }}</td>
-                                                <td>{{ number_format($data->pakan->total_harga) }}</td>
+                                                <td>Rp. {{ number_format($data->pakan->total_harga) }}</td>
                                                 <td>
                                                     {{-- <a class="btn btn-primary btn-sm"
                                                         href="/detail-pengeluaran/{{ $data->id }}">Detail</a> --}}
@@ -416,7 +416,7 @@
                                                             @foreach ($tampildatapakan as $pakan)
                                                                 <option value="{{ $pakan->id }}">
                                                                     {{ $pakan->pembelian }} - {{ $pakan->jenis_pakan }}
-                                                                    - {{ number_format($pakan->total_harga) }}
+                                                                    - Rp. {{ number_format($pakan->total_harga) }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -493,7 +493,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->vaksin->tanggal_ovk }}</td>
                                                 <td>{{ $data->vaksin->jenis_ovk }}</td>
-                                                <td>{{ number_format($data->vaksin->total_biaya) }}</td>
+                                                <td>Rp. {{ number_format($data->vaksin->total_biaya) }}</td>
                                                 <td>
                                                     {{-- <a class="btn btn-primary btn-sm"
                                                         href="/detail-pengeluaran/{{ $data->id }}">Detail</a>
@@ -639,7 +639,7 @@
                                                                 <option value="{{ $vaksin->id }}">
                                                                     {{ $vaksin->tanggal_ovk }} -
                                                                     {{ $vaksin->jenis_ovk }} -
-                                                                    {{ number_format($vaksin->total_biaya) }}
+                                                                    Rp. {{ number_format($vaksin->total_biaya) }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -716,7 +716,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->gaji->tanggal }}</td>
                                                 <td>{{ $data->gaji->nama_karyawan }}</td>
-                                                <td>{{ number_format($data->gaji->gaji) }}</td>
+                                                <td>Rp. {{ number_format($data->gaji->gaji) }}</td>
                                                 <td>
                                                     {{-- <a class="btn btn-primary btn-sm"
                                                         href="/detail-pengeluaran/{{ $data->id }}">Detail</a> --}}
@@ -859,7 +859,7 @@
                                                             @foreach ($tampildatagaji as $gaji)
                                                                 <option value="{{ $gaji->id }}">
                                                                     {{ $gaji->tanggal }} -
-                                                                    {{ $gaji->nama_karyawan }} -
+                                                                    {{ $gaji->nama_karyawan }} - Rp.
                                                                     {{ number_format($gaji->gaji) }}
                                                                 </option>
                                                             @endforeach

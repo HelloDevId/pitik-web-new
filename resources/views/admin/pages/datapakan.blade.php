@@ -61,8 +61,8 @@
                                                 <td>{{ $data->pembelian }}</td>
                                                 <td>{{ $data->jenis_pakan }}</td>
                                                 <td>{{ $data->stok_pakan }}</td>
-                                                <td>{{ number_format($data->harga_kg) }}</td>
-                                                <td>{{ number_format($data->total_harga) }}</td>
+                                                <td>Rp. {{ number_format($data->harga_kg) }}</td>
+                                                <td>Rp. {{ number_format($data->total_harga) }}</td>
                                                 <td>
 
                                                     <button class="btn btn-warning btn-sm" data-toggle="modal"

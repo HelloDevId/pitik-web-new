@@ -7,6 +7,7 @@ use App\Http\Controllers\GajiController;
 use App\Http\Controllers\VaksinController;
 use App\Http\Controllers\PakanController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\PendapatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,12 +64,24 @@ route::post('/addidpakan', [PengeluaranController::class, 'addidpakan']);
 route::post('/addidvaksin', [PengeluaranController::class, 'addidvaksin']);
 route::post('/addidgaji', [PengeluaranController::class, 'addidgaji']);
 
-route::put('/updateidayam/{id}', [PengeluaranController::class, 'updateidpakan']);
-route::put('/updateidpakan/{id}', [PengeluaranController::class, 'updateidpakan']);
-route::put('/updateidvaksin/{id}', [PengeluaranController::class, 'updateidvaksin']);
-route::put('/updateidgaji/{id}', [PengeluaranController::class, 'updateidgaji']);
+// route::put('/updateidayam/{id}', [PengeluaranController::class, 'updateidpakan']);
+// route::put('/updateidpakan/{id}', [PengeluaranController::class, 'updateidpakan']);
+// route::put('/updateidvaksin/{id}', [PengeluaranController::class, 'updateidvaksin']);
+// route::put('/updateidgaji/{id}', [PengeluaranController::class, 'updateidgaji']);
 
 route::delete('/deleteidayam/{id}', [PengeluaranController::class, 'deleteidayam']);
 route::delete('/deleteidpakan/{id}', [PengeluaranController::class, 'deleteidpakan']);
 route::delete('/deleteidvaksin/{id}', [PengeluaranController::class, 'deleteidvaksin']);
 route::delete('/deleteidgaji/{id}', [PengeluaranController::class, 'deleteidgaji']);
+
+Route::get('/datapendapatan', [PendapatanController::class, 'index']);
+Route::get('/datapendapatan/{id}', [PendapatanController::class, 'detailpendapatan']);
+Route::post('/datapendapatan', [PendapatanController::class, 'store']);
+Route::put('/datapendapatan/{id}', [PendapatanController::class, 'update']);
+Route::delete('/datapendapatan/{id}', [PendapatanController::class, 'destroy']);
+
+route::post('/addiddistribusi', [PendapatanController::class, 'addiddistribusi']);
+route::delete('/deleteiddistribusi/{id}', [PendapatanController::class, 'deleteiddistribusi']);
+
+
+

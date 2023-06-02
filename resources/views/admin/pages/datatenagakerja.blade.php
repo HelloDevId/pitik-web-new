@@ -60,7 +60,7 @@
                                                 <td>{{ $data->nama_karyawan }}</td>
                                                 <td>{{ $data->jabatan }}</td>
                                                 <td>{{ $data->tanggal }}</td>
-                                                <td>{{ number_format($data->gaji) }}</td>
+                                                <td>Rp. {{ number_format($data->gaji) }}</td>
 
                                                 <td>
 
