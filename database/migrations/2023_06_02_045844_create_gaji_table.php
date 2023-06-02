@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::create('tb_gaji', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_karyawan');
-            $table->string('jabatan');
-            $table->integer('gaji');
-            $table->date('tanggal');
+            $table->string('nama_karyawan')->nullable();
+            $table->string('jabatan')->nullable();
+            $table->integer('gaji')->nullable();
+            $table->date('tanggal')->nullable();
             $table->timestamps();
         });
     }

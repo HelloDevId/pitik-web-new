@@ -12,12 +12,12 @@ return new class extends Migration {
     {
         Schema::create('tb_ayam', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal_masuk');
-            $table->integer('jumlah_masuk');
-            $table->integer('harga_satuan');
-            $table->integer('total_harga');
-            $table->integer('mati');
-            $table->integer('total_ayam');
+            $table->date('tanggal_masuk')->nullable();
+            $table->integer('jumlah_masuk')->nullable();
+            $table->integer('harga_satuan')->nullable();
+            $table->integer('total_harga')->nullable();
+            $table->integer('mati')->nullable();
+            $table->integer('total_ayam')->nullable();
             $table->timestamps();
         });
     }

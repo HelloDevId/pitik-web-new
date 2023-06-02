@@ -9,7 +9,7 @@ class DistribusiController extends Controller
 {
     public function index()
     {
-        $distribusi = Distribusi::all();
+        $distribusi = Distribusi::where('tanggal', '!=', null)->get();
         return view('admin.pages.datadistribusi', [
             'distribusi' => $distribusi
         ]);

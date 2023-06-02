@@ -44,10 +44,11 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            {{-- <th>Total Ayam</th>
+                                            <th>Total Ayam</th>
                                             <th>Total Pakan</th>
                                             <th>Total Vaksin</th>
-                                            <th>Total Gaji</th> --}}
+                                            <th>Total Gaji</th>
+                                            <th>Total Pengeluaran</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -55,14 +56,17 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($pengeluaran as $data)
+                                        @foreach ($totalpengeluaran as $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->tanggal }}</td>
-                                                {{-- <td>{{ number_format($data->total_ayam) }}</td>
-                                                <td>{{ number_format($data->total_pakan) }}</td>
-                                                <td>{{ number_format($data->total_vaksin) }}</td>
-                                                <td>{{ number_format($data->total_gaji) }}</td> --}}
+                                                <td>Rp. {{ number_format($data->total_ayam) }}</td>
+                                                <td>Rp. {{ number_format($data->total_pakan) }}</td>
+                                                <td>Rp. {{ number_format($data->total_vaksin) }}</td>
+                                                <td>Rp. {{ number_format($data->total_gaji) }}</td>
+                                                <td>Rp.
+                                                    {{ number_format($data->total_ayam + $data->total_pakan + $data->total_vaksin + $data->total_gaji) }}
+                                                </td>
                                                 <td>
                                                     <a class="btn btn-primary btn-sm"
                                                         href="/datapengeluaran/{{ $data->id }}">Detail</a>

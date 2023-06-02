@@ -6,23 +6,31 @@ use App\Models\Distribusi;
 use App\Models\Pendapatan;
 use Illuminate\Http\Request;
 use App\Models\DetailPendapatan;
+use Illuminate\Support\Facades\DB;
 
 class PendapatanController extends Controller
 {
     public function index()
     {
-        $pendapatan = Pendapatan::all();
+        $totalpendapatan = DB::table('tb_pendapatan')
+            ->join('tb_detail_pendapatan', 'tb_pendapatan.id', '=', 'tb_detail_pendapatan.id_pendapatan')
+            ->join('tb_distribusi', 'tb_detail_pendapatan.id_distribusi', '=', 'tb_distribusi.id')
+            ->select('tb_pendapatan.*', DB::raw('SUM(tb_distribusi.payment) as total'))
+            ->groupBy('tb_pendapatan.id')
+            ->get();
+
         return view('admin.pages.datapendapatan', [
-            'pendapatan' => $pendapatan
+            // 'pendapatan' => $pendapatan
+            'datapendapatan' => $totalpendapatan
         ]);
     }
 
     public function detailpendapatan($id)
     {
         $pendapatan = Pendapatan::find($id);
-        $tampildatadistribusi = Distribusi::all();
-        $datapendapatan = DetailPendapatan::with('distribusi')->where('id_pendapatan', $id)->get();
 
+        $tampildatadistribusi = Distribusi::where('id', '!=', 1)->get();
+        $datapendapatan = DetailPendapatan::with('distribusi')->where('id_pendapatan', $id)->where('id_distribusi', '!=', 1)->get();
 
         return view('admin.pages.datapendapatandetail', [
             'pendapatan' => $pendapatan,
@@ -72,6 +80,14 @@ class PendapatanController extends Controller
         $pendapatan->tanggal = $request->tanggal;
         $pendapatan->save();
 
+        $datadistribusi = Distribusi::find(1);
+        $cekidpendapatan = Pendapatan::all()->last();
+
+        DetailPendapatan::create([
+            'id_pendapatan' => $cekidpendapatan->id,
+            'id_distribusi' => $datadistribusi->id
+        ]);
+
         return redirect('/datapendapatan')->with('create', 'Data berhasil ditambahkan');
 
     }
@@ -94,6 +110,9 @@ class PendapatanController extends Controller
 
     public function destroy($id)
     {
+        $detailpendapatan = DetailPendapatan::where('id_pendapatan', $id);
+        $detailpendapatan->delete();
+
         $pendapatan = Pendapatan::find($id);
         $pendapatan->delete();
 

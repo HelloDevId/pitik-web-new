@@ -12,12 +12,12 @@ return new class extends Migration {
     {
         Schema::create('tb_distribusi', function (Blueprint $table) {
             $table->id();
-            $table->string('customer');
-            $table->date('tanggal');
-            $table->string('contact');
-            $table->integer('total_ayam');
-            $table->integer('harga_satuan');
-            $table->integer('payment');
+            $table->string('customer')->nullable();
+            $table->date('tanggal')->nullable();
+            $table->string('contact')->nullable();
+            $table->integer('total_ayam')->nullable();
+            $table->integer('harga_satuan')->nullable();
+            $table->integer('payment')->nullable();
             $table->timestamps();
         });
     }

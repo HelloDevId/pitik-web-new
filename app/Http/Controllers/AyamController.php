@@ -9,7 +9,7 @@ class AyamController extends Controller
 {
     public function index()
     {
-        $ayam = Ayam::all();
+        $ayam = Ayam::where('tanggal_masuk', '!=', null)->get();
         return view('admin.pages.dataayam', [
             'ayam' => $ayam
         ]);

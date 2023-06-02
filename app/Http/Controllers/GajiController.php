@@ -9,7 +9,7 @@ class GajiController extends Controller
 {
     public function index()
     {
-        $gaji = Gaji::all();
+        $gaji = Gaji::where('tanggal', '!=', null)->get();
         return view('admin.pages.datatenagakerja', [
             'gaji' => $gaji
         ]);

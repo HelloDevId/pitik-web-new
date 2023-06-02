@@ -12,11 +12,11 @@ return new class extends Migration {
     {
         Schema::create('tb_pakan', function (Blueprint $table) {
             $table->id();
-            $table->date('pembelian');
-            $table->string('jenis_pakan');
-            $table->integer('stok_pakan');
-            $table->integer('harga_kg');
-            $table->integer('total_harga');
+            $table->date('pembelian')->nullable();
+            $table->string('jenis_pakan')->nullable();
+            $table->integer('stok_pakan')->nullable();
+            $table->integer('harga_kg')->nullable();
+            $table->integer('total_harga')->nullable();
             $table->timestamps();
         });
     }

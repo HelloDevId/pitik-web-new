@@ -9,7 +9,7 @@ class VaksinController extends Controller
 {
     public function index()
     {
-        $vaksin = Vaksin::all();
+        $vaksin = Vaksin::where('tanggal_ovk', '!=', null)->get();
         return view('admin.pages.dataovk', [
             'vaksin' => $vaksin
         ]);

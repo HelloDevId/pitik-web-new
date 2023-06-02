@@ -44,6 +44,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
+                                            <th>Total Pendapatan</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -51,10 +52,11 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($pendapatan as $data)
+                                        @foreach ($datapendapatan as $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->tanggal }}</td>
+                                                <td>Rp. {{ number_format($data->total) }}</td>
                                                 <td>
                                                     <a class="btn btn-primary btn-sm"
                                                         href="/datapendapatan/{{ $data->id }}">Detail</a>

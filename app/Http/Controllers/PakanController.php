@@ -9,7 +9,7 @@ class PakanController extends Controller
 {
     public function index()
     {
-        $pakan = Pakan::all();
+        $pakan = Pakan::where('pembelian', '!=', null)->get();
         return view('admin.pages.datapakan', [
             'pakan' => $pakan
         ]);

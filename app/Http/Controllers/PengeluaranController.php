@@ -18,37 +18,37 @@ class PengeluaranController extends Controller
 {
     public function index()
     {
-        $pengeluaran = Pengeluaran::all();
+        // $pengeluaran = Pengeluaran::all();
 
-        // $totalpengeluaran = DB::table('tb_pengeluaran')
-        //     ->join('tb_detail_pengeluaran_ayam', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_ayam.id_pengeluaran')
-        //     ->join('tb_ayam', 'tb_detail_pengeluaran_ayam.id_ayam', '=', 'tb_ayam.id')
-        //     ->join('tb_detail_pengeluaran_pakan', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_pakan.id_pengeluaran')
-        //     ->join('tb_pakan', 'tb_detail_pengeluaran_pakan.id_pakan', '=', 'tb_pakan.id')
-        //     ->join('tb_detail_pengeluaran_vaksin', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_vaksin.id_pengeluaran')
-        //     ->join('tb_vaksin', 'tb_detail_pengeluaran_vaksin.id_vaksin', '=', 'tb_vaksin.id')
-        //     ->join('tb_detail_pengeluaran_gaji', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_gaji.id_pengeluaran')
-        //     ->join('tb_gaji', 'tb_detail_pengeluaran_gaji.id_gaji', '=', 'tb_gaji.id')
-        //     ->select('tb_pengeluaran.*', DB::raw('SUM(tb_ayam.total_harga) as total_ayam'), DB::raw('SUM(tb_pakan.total_harga) as total_pakan'), DB::raw('SUM(tb_vaksin.total_biaya) as total_vaksin'), DB::raw('SUM(tb_gaji.gaji) as total_gaji'))
-        //     ->groupBy('tb_pengeluaran.id')->get();
+        $totalpengeluaran = DB::table('tb_pengeluaran')
+            ->join('tb_detail_pengeluaran_ayam', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_ayam.id_pengeluaran')
+            ->join('tb_ayam', 'tb_detail_pengeluaran_ayam.id_ayam', '=', 'tb_ayam.id')
+            ->join('tb_detail_pengeluaran_pakan', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_pakan.id_pengeluaran')
+            ->join('tb_pakan', 'tb_detail_pengeluaran_pakan.id_pakan', '=', 'tb_pakan.id')
+            ->join('tb_detail_pengeluaran_vaksin', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_vaksin.id_pengeluaran')
+            ->join('tb_vaksin', 'tb_detail_pengeluaran_vaksin.id_vaksin', '=', 'tb_vaksin.id')
+            ->join('tb_detail_pengeluaran_gaji', 'tb_pengeluaran.id', '=', 'tb_detail_pengeluaran_gaji.id_pengeluaran')
+            ->join('tb_gaji', 'tb_detail_pengeluaran_gaji.id_gaji', '=', 'tb_gaji.id')
+            ->select('tb_pengeluaran.*', DB::raw('SUM(tb_ayam.total_harga) as total_ayam'), DB::raw('SUM(tb_pakan.total_harga) as total_pakan'), DB::raw('SUM(tb_vaksin.total_biaya) as total_vaksin'), DB::raw('SUM(tb_gaji.gaji) as total_gaji'))
+            ->groupBy('tb_pengeluaran.id')->get();
 
         return view('admin.pages.datapengeluaran', [
-            // 'totalpengeluaran' => $totalpengeluaran,
-            'pengeluaran' => $pengeluaran
+            'totalpengeluaran' => $totalpengeluaran,
+            // 'pengeluaran' => $pengeluaran
         ]);
     }
 
     public function detailpengeluaran($id)
     {
-        $tampildataayam = Ayam::all();
-        $tampildatapakan = Pakan::all();
-        $tampildatavaksin = Vaksin::all();
-        $tampildatagaji = Gaji::all();
+        $tampildataayam = Ayam::where('id', '!=', 1)->get();
+        $tampildatapakan = Pakan::where('id', '!=', 1)->get();
+        $tampildatavaksin = Vaksin::where('id', '!=', 1)->get();
+        $tampildatagaji = Gaji::where('id', '!=', 1)->get();
 
-        $datapakan = DetailPakan::with('pakan')->where('id_pengeluaran', $id)->get();
-        $datavaksin = DetailVaksin::with('vaksin')->where('id_pengeluaran', $id)->get();
-        $dataayam = DetailAyam::with('ayam')->where('id_pengeluaran', $id)->get();
-        $datagaji = DetailGaji::with('gaji')->where('id_pengeluaran', $id)->get();
+        $datapakan = DetailPakan::with('pakan')->where('id_pengeluaran', $id)->where('id_pakan', '!=', 1)->get();
+        $datavaksin = DetailVaksin::with('vaksin')->where('id_pengeluaran', $id)->where('id_vaksin', '!=', 1)->get();
+        $dataayam = DetailAyam::with('ayam')->where('id_pengeluaran', $id)->where('id_ayam', '!=', 1)->get();
+        $datagaji = DetailGaji::with('gaji')->where('id_pengeluaran', $id)->where('id_gaji', '!=', 1)->get();
 
         $pengeluaran = Pengeluaran::find($id);
         return view('admin.pages.datapengeluarandetail', [
@@ -248,6 +248,34 @@ class PengeluaranController extends Controller
         // $cekidpengeluaran = Pengeluaran::all()->last();
         // $id_pengeluaran = $cekidpengeluaran->id;
 
+        $dataayam = Ayam::find(1);
+        $datapakan = Pakan::find(1);
+        $datavaksin = Vaksin::find(1);
+        $datagaji = Gaji::find(1);
+
+        $cekidpengeluaran = Pengeluaran::all()->last();
+
+        DetailAyam::create([
+            'id_pengeluaran' => $cekidpengeluaran->id,
+            'id_ayam' => $dataayam->id,
+        ]);
+
+        DetailPakan::create([
+            'id_pengeluaran' => $cekidpengeluaran->id,
+            'id_pakan' => $datapakan->id,
+        ]);
+
+        DetailVaksin::create([
+            'id_pengeluaran' => $cekidpengeluaran->id,
+            'id_vaksin' => $datavaksin->id,
+        ]);
+
+        DetailGaji::create([
+            'id_pengeluaran' => $cekidpengeluaran->id,
+            'id_gaji' => $datagaji->id,
+        ]);
+
+
         return redirect('/datapengeluaran/')->with('create', 'Data Pengeluaran Berhasil Ditambahkan!');
     }
 
@@ -267,6 +295,27 @@ class PengeluaranController extends Controller
 
     public function destroy($id)
     {
+        $cekdetailayam = DetailAyam::where('id_pengeluaran', $id)->first();
+        $cekdetailpakan = DetailPakan::where('id_pengeluaran', $id)->first();
+        $cekdetailvaksin = DetailVaksin::where('id_pengeluaran', $id)->first();
+        $cekdetailgaji = DetailGaji::where('id_pengeluaran', $id)->first();
+
+        if ($cekdetailayam) {
+            DetailAyam::where('id_pengeluaran', $id)->delete();
+        }
+
+        if ($cekdetailpakan) {
+            DetailPakan::where('id_pengeluaran', $id)->delete();
+        }
+
+        if ($cekdetailvaksin) {
+            DetailVaksin::where('id_pengeluaran', $id)->delete();
+        }
+
+        if ($cekdetailgaji) {
+            DetailGaji::where('id_pengeluaran', $id)->delete();
+        }
+
         Pengeluaran::find($id)->delete();
         return redirect('/datapengeluaran')->with('delete', 'Data Pengeluaran Berhasil Dihapus!');
     }
