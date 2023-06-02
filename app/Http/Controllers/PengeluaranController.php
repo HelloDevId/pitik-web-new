@@ -1,0 +1,255 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Ayam;
+use App\Models\Gaji;
+use App\Models\Pakan;
+use App\Models\Vaksin;
+use App\Models\DetailAyam;
+use App\Models\DetailGaji;
+use App\Models\DetailPakan;
+use App\Models\Pengeluaran;
+use App\Models\DetailVaksin;
+use Illuminate\Http\Request;
+
+class PengeluaranController extends Controller
+{
+    public function index()
+    {
+        $pengeluaran = Pengeluaran::all();
+        return view('admin.pages.datapengeluaran', [
+            'pengeluaran' => $pengeluaran
+        ]);
+    }
+
+    public function detailpengeluaran($id)
+    {
+        $tampildataayam = Ayam::all();
+        $tampildatapakan = Pakan::all();
+        $tampildatavaksin = Vaksin::all();
+        $tampildatagaji = Gaji::all();
+
+        $datapakan = DetailPakan::with('pakan')->where('id_pengeluaran', $id)->get();
+        $datavaksin = DetailVaksin::with('vaksin')->where('id_pengeluaran', $id)->get();
+        $dataayam = DetailAyam::with('ayam')->where('id_pengeluaran', $id)->get();
+        $datagaji = DetailGaji::with('gaji')->where('id_pengeluaran', $id)->get();
+
+        $pengeluaran = Pengeluaran::find($id);
+        return view('admin.pages.datapengeluarandetail', [
+            'pengeluaran' => $pengeluaran,
+            'datapakan' => $datapakan,
+            'datavaksin' => $datavaksin,
+            'dataayam' => $dataayam,
+            'datagaji' => $datagaji,
+            'tampildataayam' => $tampildataayam,
+            'tampildatapakan' => $tampildatapakan,
+            'tampildatavaksin' => $tampildatavaksin,
+            'tampildatagaji' => $tampildatagaji,
+        ]);
+    }
+
+
+    ###############################
+
+    public function addidayam(Request $request)
+    {
+        $request->validate([
+            'id_pengeluaran' => 'required',
+            'id_ayam' => 'required',
+        ]);
+
+        $cekidayam = DetailAyam::where('id_pengeluaran', $request->id_pengeluaran)->where('id_ayam', $request->id_ayam)->first();
+        if ($cekidayam) {
+            return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('sudahada', 'Data Ayam Sudah Ada!');
+        } else {
+
+            DetailAyam::create([
+                'id_pengeluaran' => $request->id_pengeluaran,
+                'id_ayam' => $request->id_ayam,
+            ]);
+
+            return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('create', 'Data Ayam Berhasil Ditambahkan!');
+        }
+    }
+
+    // public function updateidayam(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'id_ayam' => 'required',
+    //     ]);
+
+    //     DetailAyam::where('id_ayam', $id)
+    //         ->update([
+    //             'id_ayam' => $request->id_ayam,
+    //         ]);
+    //     return redirect()->back()->with('update', 'Data Ayam Berhasil Diubah!');
+    // }
+
+    public function deleteidayam($id)
+    {
+        DetailAyam::where('id_ayam', $id)->delete();
+        return redirect()->back()->with('delete', 'Data Ayam Berhasil Dihapus!');
+    }
+
+    ######################################################
+
+    public function addidpakan(Request $request)
+    {
+        $request->validate([
+            'id_pengeluaran' => 'required',
+            'id_pakan' => 'required',
+        ]);
+
+        $cekidpakan = DetailPakan::where('id_pengeluaran', $request->id_pengeluaran)->where('id_pakan', $request->id_pakan)->first();
+        if ($cekidpakan) {
+            return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('sudahada', 'Data Pakan Sudah Ada!');
+        } else {
+
+            DetailPakan::create([
+                'id_pengeluaran' => $request->id_pengeluaran,
+                'id_pakan' => $request->id_pakan,
+            ]);
+
+            return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('create', 'Data Pakan Berhasil Ditambahkan!');
+        }
+    }
+
+    // public function updateidpakan(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'id_pakan' => 'required',
+    //     ]);
+
+    //     DetailPakan::where('id_pakan', $id)
+    //         ->update([
+    //             'id_pakan' => $request->id_pakan,
+    //         ]);
+    //     return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('update', 'Data Pakan Berhasil Diubah!');
+    // }
+
+    public function deleteidpakan(Request $request, $id)
+    {
+        DetailPakan::where('id_pakan', $id)->delete();
+        return redirect()->back()->with('delete', 'Data Pakan Berhasil Dihapus!');
+    }
+
+    ########################################################
+
+    public function addidvaksin(Request $request)
+    {
+        $request->validate([
+            'id_pengeluaran' => 'required',
+            'id_vaksin' => 'required',
+        ]);
+
+        $cekidvaksin = DetailVaksin::where('id_pengeluaran', $request->id_pengeluaran)->where('id_vaksin', $request->id_vaksin)->first();
+        if ($cekidvaksin) {
+            return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('sudahada', 'Data Vaksin Sudah Ada!');
+        } else {
+
+            DetailVaksin::create([
+                'id_pengeluaran' => $request->id_pengeluaran,
+                'id_vaksin' => $request->id_vaksin,
+            ]);
+
+            return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('create', 'Data Vaksin Berhasil Ditambahkan!');
+        }
+    }
+
+    // public function updateidvaksin(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'id_vaksin' => 'required',
+    //     ]);
+
+    //     DetailVaksin::where('id', $id)
+    //         ->update([
+    //             'id_vaksin' => $request->id_vaksin,
+    //         ]);
+    //     return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('update', 'Data Vaksin Berhasil Diubah!');
+    // }
+
+    public function deleteidvaksin(Request $request, $id)
+    {
+        DetailVaksin::where('id_vaksin', $id)->delete();
+        return redirect()->back()->with('delete', 'Data Vaksin Berhasil Dihapus!');
+    }
+
+    #######################################################
+
+    public function addidgaji(Request $request)
+    {
+        $request->validate([
+            'id_pengeluaran' => 'required',
+            'id_gaji' => 'required',
+        ]);
+
+        $cekidgaji = DetailGaji::where('id_pengeluaran', $request->id_pengeluaran)->where('id_gaji', $request->id_gaji)->first();
+        if ($cekidgaji) {
+            return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('sudahada', 'Data Gaji Sudah Ada!');
+        } else {
+
+            DetailGaji::create([
+                'id_pengeluaran' => $request->id_pengeluaran,
+                'id_gaji' => $request->id_gaji,
+            ]);
+
+            return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('create', 'Data Gaji Berhasil Ditambahkan!');
+        }
+    }
+
+    // public function updateidgaji(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'id_gaji' => 'required',
+    //     ]);
+
+    //     DetailGaji::where('id', $id)
+    //         ->update([
+    //             'id_gaji' => $request->id_gaji,
+    //         ]);
+    //     return redirect('/datapengeluaran/' . $request->id_pengeluaran)->with('update', 'Data Gaji Berhasil Diubah!');
+    // }
+
+    public function deleteidgaji(Request $request, $id)
+    {
+        DetailGaji::where('id_gaji', $id)->delete();
+        return redirect()->back()->with('delete', 'Data Gaji Berhasil Dihapus!');
+    }
+
+    #################################################
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'tanggal' => 'required',
+        ]);
+
+        Pengeluaran::create([
+            'tanggal' => $request->tanggal,
+        ]);
+
+        return redirect('/datapengeluaran')->with('create', 'Data Pengeluaran Berhasil Ditambahkan!');
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'tanggal' => 'required',
+        ]);
+
+        Pengeluaran::where('id', $id)
+            ->update([
+                'tanggal' => $request->tanggal,
+            ]);
+        return redirect('/datapengeluaran')->with('update', 'Data Pengeluaran Berhasil Diubah!');
+    }
+
+    public function destroy($id)
+    {
+        Pengeluaran::find($id)->delete();
+        return redirect('/datapengeluaran')->with('delete', 'Data Pengeluaran Berhasil Dihapus!');
+    }
+}

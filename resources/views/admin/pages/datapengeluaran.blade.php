@@ -43,12 +43,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Harga Pakan</th>
-                                            <th>Tanggal Beli Pakan</th>
-                                            <th>Biaya Vaksin</th>
-                                            <th>Tanggal Vaksin</th>
-                                            <th>Tenaga Kerja</th>
-                                            <th>Bibit Ayam</th>
+                                            <th>Tanggal</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -59,13 +54,13 @@
                                         @foreach ($pengeluaran as $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $data->harga_pakan }}</td>
-                                                <td>{{ $data->tgl_beli_pakan }}</td>
-                                                <td>{{ $data->biaya_vaksin }}</td>
-                                                <td>{{ $data->tgl_vaksin }}</td>
-                                                <td>{{ $data->tenaga_kerja }}</td>
-                                                <td>{{ $data->bibit_ayam }}</td>
+                                                <td>{{ $data->tanggal }}</td>
                                                 <td>
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="/datapengeluaran/{{ $data->id }}">Detail</a>
+
+                                                    {{-- <button class="btn btn-primary btn-sm" data-toggle="modal"
+                                                        data-target="#detailModal{{ $data->id }}">Detail</button> --}}
 
                                                     <button class="btn btn-warning btn-sm" data-toggle="modal"
                                                         data-target="#editModal{{ $data->id }}">Edit</button>
@@ -122,55 +117,16 @@
                                                             @method('PUT')
                                                             <div class="modal-body">
 
-                                                                <div class="form-group">
-                                                                    <label for="recipient-name" class="col-form-label">Harga
-                                                                        Pakan</label>
-                                                                    <input type="text" value="{{ $data->harga_pakan }}"
-                                                                        name="harga_pakan" class="form-control"
-                                                                        id="recipient-name">
-                                                                </div>
+
                                                                 <div class="form-group">
                                                                     <label for="recipient-name"
                                                                         class="col-form-label">Tanggal
-                                                                        Beli Pakan</label>
-                                                                    <input type="date"
-                                                                        value="{{ $data->tgl_beli_pakan }}"
-                                                                        name="tgl_beli_pakan" class="form-control"
-                                                                        id="recipient-name">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="recipient-name" class="col-form-label">Biaya
-                                                                        Vaksin</label>
-                                                                    <input type="text" value="{{ $data->biaya_vaksin }}"
-                                                                        name="biaya_vaksin" class="form-control"
-                                                                        id="recipient-name">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="recipient-name"
-                                                                        class="col-form-label">Tanggal
-                                                                        Vaksin</label>
-                                                                    <input type="date" value="{{ $data->tgl_vaksin }}"
-                                                                        name="tgl_vaksin" class="form-control"
-                                                                        id="recipient-name">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="recipient-name"
-                                                                        class="col-form-label">Tenaga Kerja
                                                                     </label>
-                                                                    <input type="text"
-                                                                        value="{{ $data->tenaga_kerja }}"
-                                                                        name="tenaga_kerja" class="form-control"
+                                                                    <input type="date" value="{{ $data->tanggal }}"
+                                                                        name="tanggal" class="form-control"
                                                                         id="recipient-name">
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label for="recipient-name"
-                                                                        class="col-form-label">Bibit Ayam
-                                                                    </label>
-                                                                    <input type="text"
-                                                                        value=" {{ $data->bibit_ayam }}"
-                                                                        name="bibit_ayam" class="form-control"
-                                                                        id="recipient-name">
-                                                                </div>
+
 
 
                                                             </div>
@@ -205,42 +161,11 @@
                                                 <div class="modal-body">
 
                                                     <div class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Harga
-                                                            Pakan</label>
-                                                        <input type="text" value="" name="harga_pakan"
-                                                            class="form-control" id="recipient-name">
-                                                    </div>
-                                                    <div class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Tanggal
-                                                            Beli Pakan</label>
-                                                        <input type="date" value="" name="tgl_beli_pakan"
-                                                            class="form-control" id="recipient-name">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Biaya
-                                                            Vaksin</label>
-                                                        <input type="text" value="" name="biaya_vaksin"
-                                                            class="form-control" id="recipient-name">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Tanggal
-                                                            Vaksin</label>
-                                                        <input type="date" value="" name="tgl_vaksin"
-                                                            class="form-control" id="recipient-name">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Tenaga Kerja
                                                         </label>
-                                                        <input type="text" value="" name="tenaga_kerja"
+                                                        <input type="date" value="" name="tanggal"
                                                             class="form-control" id="recipient-name">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Bibit Ayam
-                                                        </label>
-                                                        <input type="text" value="" name="bibit_ayam"
-                                                            class="form-control" id="recipient-name">
-                                                    </div>
-
 
                                                 </div>
                                                 <div class="modal-footer">

@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreign('id_pengeluaran')->references('id')->on('tb_pengeluaran')->onDelete('restrict');
             $table->unsignedBigInteger('id_vaksin');
             $table->foreign('id_vaksin')->references('id')->on('tb_vaksin')->onDelete('restrict');
+            $table->timestamps();
         });
     }
 

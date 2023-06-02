@@ -43,7 +43,6 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Id</th>
                                             <th>Tanggal Masuk</th>
                                             <th>Jumlah Masuk</th>
                                             <th>Harga Satuan</th>
@@ -60,7 +59,6 @@
                                         @foreach ($ayam as $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $data->id }}</td>
                                                 <td>{{ $data->tanggal_masuk }}</td>
                                                 <td>{{ $data->jumlah_masuk }}</td>
                                                 <td>Rp. {{ number_format($data->harga_satuan) }}</td>

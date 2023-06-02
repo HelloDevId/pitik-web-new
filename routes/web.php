@@ -6,6 +6,7 @@ use App\Http\Controllers\DistribusiController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\VaksinController;
 use App\Http\Controllers\PakanController;
+use App\Http\Controllers\PengeluaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,24 @@ route::get('/datapakan', [PakanController::class, 'index']);
 route::post('/datapakan', [PakanController::class, 'store']);
 route::put('/datapakan/{id}', [PakanController::class, 'update']);
 route::delete('/datapakan/{id}', [PakanController::class, 'destroy']);
+
+route::get('/datapengeluaran', [PengeluaranController::class, 'index']);
+route::get('/datapengeluaran/{id}', [PengeluaranController::class, 'detailpengeluaran']);
+route::post('/datapengeluaran', [PengeluaranController::class, 'store']);
+route::put('/datapengeluaran/{id}', [PengeluaranController::class, 'update']);
+route::delete('/datapengeluaran/{id}', [PengeluaranController::class, 'destroy']);
+
+route::post('/addidayam', [PengeluaranController::class, 'addidayam']);
+route::post('/addidpakan', [PengeluaranController::class, 'addidpakan']);
+route::post('/addidvaksin', [PengeluaranController::class, 'addidvaksin']);
+route::post('/addidgaji', [PengeluaranController::class, 'addidgaji']);
+
+route::put('/updateidayam/{id}', [PengeluaranController::class, 'updateidpakan']);
+route::put('/updateidpakan/{id}', [PengeluaranController::class, 'updateidpakan']);
+route::put('/updateidvaksin/{id}', [PengeluaranController::class, 'updateidvaksin']);
+route::put('/updateidgaji/{id}', [PengeluaranController::class, 'updateidgaji']);
+
+route::delete('/deleteidayam/{id}', [PengeluaranController::class, 'deleteidayam']);
+route::delete('/deleteidpakan/{id}', [PengeluaranController::class, 'deleteidpakan']);
+route::delete('/deleteidvaksin/{id}', [PengeluaranController::class, 'deleteidvaksin']);
+route::delete('/deleteidgaji/{id}', [PengeluaranController::class, 'deleteidgaji']);
