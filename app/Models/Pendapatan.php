@@ -22,9 +22,5 @@ class Pendapatan extends Model
         return $this->hasMany(DetailPendapatan::class, 'id_pendapatan', 'id');
     }
 
-    public function penghasilan()
-    {
-        return $this->hasMany(Penghasilan::class, 'id_pendapatan', 'id');
-    }
 
 }

@@ -20,8 +20,4 @@ class PengeluaranVaksin extends Model
         return $this->hasMany(DetailVaksin::class, 'id_pengeluaran_vaksin', 'id');
     }
 
-    public function penghasilan()
-    {
-        return $this->hasMany(Penghasilan::class, 'id_pengeluaran_vaksin', 'id');
-    }
 }

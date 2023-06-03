@@ -24,9 +24,5 @@ class DetailPendapatan extends Model
         return $this->belongsTo(Distribusi::class, 'id_distribusi', 'id');
     }
 
-    public function pendapatan()
-    {
-        return $this->belongsTo(Pendapatan::class, 'id_pendapatan', 'id');
-    }
 
 }

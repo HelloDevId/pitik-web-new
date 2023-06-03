@@ -21,8 +21,4 @@ class PengeluaranGaji extends Model
         return $this->hasMany(DetailGaji::class, 'id_pengeluaran_gaji', 'id');
     }
 
-    public function penghasilan()
-    {
-        return $this->hasMany(Penghasilan::class, 'id_pengeluaran_gaji', 'id');
-    }
 }

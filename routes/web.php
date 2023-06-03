@@ -11,6 +11,8 @@ use App\Http\Controllers\PengeluaranPakanController;
 use App\Http\Controllers\PengeluaranVaksinController;
 use App\Http\Controllers\PengeluaranGajiController;
 use App\Http\Controllers\PendapatanController;
+use App\Http\Controllers\PenghasilanController;
+
 
 
 /*
@@ -101,3 +103,8 @@ Route::delete('/deleteidvaksin/{id}', [PengeluaranVaksinController::class, 'dele
 
 Route::post('/addidgaji', [PengeluaranGajiController::class, 'addidgaji']);
 Route::delete('/deleteidgaji/{id}', [PengeluaranGajiController::class, 'deleteidgaji']);
+
+Route::get('/datapenghasilan', [PenghasilanController::class, 'index']);
+Route::post('/datapenghasilan', [PenghasilanController::class, 'store']);
+Route::put('/datapenghasilan/{id}', [PenghasilanController::class, 'update']);
+Route::delete('/datapenghasilan/{id}', [PenghasilanController::class, 'destroy']);

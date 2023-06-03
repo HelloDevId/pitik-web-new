@@ -21,8 +21,4 @@ class PengeluaranPakan extends Model
         return $this->hasMany(DetailPakan::class, 'id_pengeluaran_pakan', 'id');
     }
 
-    public function penghasilan()
-    {
-        return $this->hasMany(Penghasilan::class, 'id_pengeluaran_pakan', 'id');
-    }
 }

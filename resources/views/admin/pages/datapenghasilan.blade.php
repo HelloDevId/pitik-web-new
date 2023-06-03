@@ -23,9 +23,9 @@
 
 
                                         <?php
-
+                                        
                                         $nomer = 1;
-
+                                        
                                         ?>
 
                                         @foreach ($errors->all() as $error)
@@ -44,8 +44,12 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>Total Pendapatan</th>
-                                            <th>Total Pengeluaran</th>
+                                            <th>Pendapatan</th>
+                                            <th>Pengeluaran Ayam</th>
+                                            <th>Pengeluaran Pakan</th>
+                                            <th>Pengeluaran Vaksin</th>
+                                            <th>Pengeluaran Gaji</th>
+                                            <th>Penghasilan</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -53,14 +57,17 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($totaljumlahpenghasilan as $data)
+                                        @foreach ($datapenghasilan as $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->tanggal }}</td>
-                                                <td>Rp. {{ number_format($data->total) }}</td>
-                                                <td>Rp.
-                                                    {{ number_format($data->total_ayam + $data->total_pakan + $data->total_vaksin + $data->total_gaji) }}
-                                                </td>
+                                                <td>Rp. {{ number_format($data->pendapatan) }}</td>
+                                                <td>Rp. {{ number_format($data->pengeluaran_ayam) }}</td>
+                                                <td>Rp. {{ number_format($data->pengeluaran_pakan) }}</td>
+                                                <td>Rp. {{ number_format($data->pengeluaran_vaksin) }}</td>
+                                                <td>Rp. {{ number_format($data->pengeluaran_gaji) }}</td>
+                                                <td>Rp. {{ number_format($data->penghasilan) }}</td>
+
                                                 <td>
                                                     {{-- <a class="btn btn-primary btn-sm"
                                                         href="/datapengeluaran/{{ $data->id }}">Detail</a> --}}
@@ -107,7 +114,7 @@
                                             </div>
 
                                             <!-- Edit Modal -->
-                                            {{-- <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1"
+                                            <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1"
                                                 role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -118,7 +125,7 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form action="/datapendapatan/{{ $data->id }}" method="POST">
+                                                        <form action="/datapenghasilan/{{ $data->id }}" method="POST">
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="modal-body">
@@ -134,37 +141,48 @@
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label for="simple-select2">Data Pengeluaran</label>
-                                                                    <select name="id_pengeluaran" class="form-control">
-                                                                        <option selected disabled>Pilih Data Distribusi
-                                                                        </option>
-                                                                        @foreach ($tampildatadistribusi as $distribusi)
-                                                                            <option value="{{ $distribusi->id }}">
-                                                                                {{ $distribusi->customer }} -
-                                                                                {{ $distribusi->tanggal }}
-                                                                                - Rp.
-                                                                                {{ number_format($distribusi->payment) }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
+                                                                    <label for="recipient-name"
+                                                                        class="col-form-label">Pendapatan</label>
+                                                                    <input type="text" value="{{ $data->pendapatan }}"
+                                                                        name="pendapatan" class="form-control"
+                                                                        id="recipient-name">
                                                                 </div>
+
                                                                 <div class="form-group">
-                                                                    <label for="simple-select2">Data Penghasilan</label>
-                                                                    <select name="id_penghasilan" class="form-control">
-                                                                        <option selected disabled>Pilih Data Distribusi
-                                                                        </option>
-                                                                        @foreach ($tampildatadistribusi as $distribusi)
-                                                                            <option value="{{ $distribusi->id }}">
-                                                                                {{ $distribusi->customer }} -
-                                                                                {{ $distribusi->tanggal }}
-                                                                                - Rp.
-                                                                                {{ number_format($distribusi->payment) }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
+                                                                    <label for="recipient-name"
+                                                                        class="col-form-label">Pengeluaran Ayam</label>
+                                                                    <input type="text"
+                                                                        value="{{ $data->pengeluaran_ayam }}"
+                                                                        name="pengeluaran_ayam" class="form-control"
+                                                                        id="recipient-name">
                                                                 </div>
 
+                                                                <div class="form-group">
+                                                                    <label for="recipient-name"
+                                                                        class="col-form-label">Pengeluaran Pakan</label>
+                                                                    <input type="text"
+                                                                        value="{{ $data->pengeluaran_pakan }}"
+                                                                        name="pengeluaran_pakan" class="form-control"
+                                                                        id="recipient-name">
+                                                                </div>
 
+                                                                <div class="form-group">
+                                                                    <label for="recipient-name"
+                                                                        class="col-form-label">Pengeluaran Vaksin</label>
+                                                                    <input type="text"
+                                                                        value="{{ $data->pengeluaran_vaksin }}"
+                                                                        name="pengeluaran_vaksin" class="form-control"
+                                                                        id="recipient-name">
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="recipient-name"
+                                                                        class="col-form-label">Pengeluaran Gaji</label>
+                                                                    <input type="text"
+                                                                        value="{{ $data->pengeluaran_gaji }}"
+                                                                        name="pengeluaran_gaji" class="form-control"
+                                                                        id="recipient-name">
+                                                                </div>
 
                                                             </div>
                                                             <div class="modal-footer">
@@ -176,7 +194,7 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -202,31 +220,43 @@
                                                         <input type="date" value="" name="tanggal"
                                                             class="form-control" id="recipient-name">
                                                     </div>
+
                                                     <div class="form-group">
-                                                        <label for="simple-select2">Data Pengeluaran</label>
-                                                        <select name="id_pengeluaran" class="form-control">
-                                                            <option selected disabled>Pilih Data Distribusi</option>
-                                                            @foreach ($tampildatapengeluaran as $pengeluaran)
-                                                                <option value="{{ $pengeluaran->id }}">
-                                                                    {{ $pengeluaran->tanggal }}
-                                                                    - Rp.
-                                                                    {{ number_format($pengeluaran->total_ayam + $pengeluaran->total_pakan + $pengeluaran->total_vaksin + $pengeluaran->total_gaji) }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
+                                                        <label for="recipient-name"
+                                                            class="col-form-label">Pendapatan</label>
+                                                        <input type="text" value="" name="pendapatan"
+                                                            class="form-control" id="recipient-name">
                                                     </div>
+
                                                     <div class="form-group">
-                                                        <label for="simple-select2">Data Pendapatan</label>
-                                                        <select name="id_pendapatan" class="form-control">
-                                                            <option selected disabled>Pilih Data Distribusi</option>
-                                                            @foreach ($tampildatapenghasilan as $penghasilan)
-                                                                <option value="{{ $penghasilan->id }}">
-                                                                    {{ $penghasilan->tanggal }}
-                                                                    - Rp. {{ number_format($penghasilan->total) }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
+                                                        <label for="recipient-name" class="col-form-label">Pengeluaran
+                                                            Ayam</label>
+                                                        <input type="text" value="" name="pengeluaran_ayam"
+                                                            class="form-control" id="recipient-name">
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Pengeluaran
+                                                            Pakan</label>
+                                                        <input type="text" value="" name="pengeluaran_pakan"
+                                                            class="form-control" id="recipient-name">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Pengeluaran
+                                                            Vaksin</label>
+                                                        <input type="text" value="" name="pengeluaran_vaksin"
+                                                            class="form-control" id="recipient-name">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Pengeluaran
+                                                            Gaji</label>
+                                                        <input type="text" value="" name="pengeluaran_gaji"
+                                                            class="form-control" id="recipient-name">
+                                                    </div>
+
+
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn mb-2 btn-danger"

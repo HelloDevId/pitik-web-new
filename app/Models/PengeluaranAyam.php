@@ -21,8 +21,5 @@ class PengeluaranAyam extends Model
         return $this->hasMany(DetailAyam::class, 'id_pengeluaran_ayam', 'id');
     }
 
-    public function penghasilan()
-    {
-        return $this->hasMany(Penghasilan::class, 'id_pengeluaran_ayam', 'id');
-    }
+
 }
