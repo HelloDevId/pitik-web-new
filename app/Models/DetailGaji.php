@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Gaji;
-use App\Models\Pengeluaran;
+use App\Models\PengeluaranGaji;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -16,7 +16,7 @@ class DetailGaji extends Model
     protected $fillable =
         [
             'id_gaji',
-            'id_pengeluaran',
+            'id_pengeluaran_gaji',
         ];
 
     public function gaji()
@@ -24,9 +24,9 @@ class DetailGaji extends Model
         return $this->belongsTo(Gaji::class, 'id_gaji', 'id');
     }
 
-    public function pengeluaran()
+    public function pengeluarangaji()
     {
-        return $this->belongsTo(Pengeluaran::class, 'id_pengeluaran', 'id');
+        return $this->belongsTo(PengeluaranGaji::class, 'id_pengeluaran_gaji', 'id');
     }
 
 

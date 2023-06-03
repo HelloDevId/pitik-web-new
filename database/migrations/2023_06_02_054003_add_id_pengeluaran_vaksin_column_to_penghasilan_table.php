@@ -10,12 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('tb_detail_pengeluaran_vaksin', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_pengeluaran_vaksin');
+        Schema::table('tb_penghasilan', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_pengeluaran_vaksin')->after('id')->default(2);
             $table->foreign('id_pengeluaran_vaksin')->references('id')->on('tb_pengeluaran_vaksin')->onDelete('restrict');
-            $table->unsignedBigInteger('id_vaksin');
-            $table->foreign('id_vaksin')->references('id')->on('tb_vaksin')->onDelete('restrict');
-            $table->timestamps();
         });
     }
 
@@ -24,6 +21,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_detail_pengeluaran_vaksin');
+        Schema::table('tb_pengasilan', function (Blueprint $table) {
+            $table->dropForeign(['id_pengeluaran_vaksin']);
+            $table->dropColumn('id_pengeluaran_vaksin');
+        });
     }
 };

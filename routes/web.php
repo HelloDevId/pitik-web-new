@@ -8,6 +8,7 @@ use App\Http\Controllers\VaksinController;
 use App\Http\Controllers\PakanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PendapatanController;
+use App\Http\Controllers\PenghasilanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,5 +84,7 @@ Route::delete('/datapendapatan/{id}', [PendapatanController::class, 'destroy']);
 route::post('/addiddistribusi', [PendapatanController::class, 'addiddistribusi']);
 route::delete('/deleteiddistribusi/{id}', [PendapatanController::class, 'deleteiddistribusi']);
 
-
-
+Route::get('/datapenghasilan', [PenghasilanController::class, 'index']);
+Route::post('/datapenghasilan', [PenghasilanController::class, 'store']);
+Route::put('/datapenghasilan/{id}', [PenghasilanController::class, 'update']);
+Route::delete('/datapenghasilan/{id}', [PenghasilanController::class, 'destroy']);

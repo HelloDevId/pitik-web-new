@@ -84,6 +84,13 @@
                     <span class="ml-3 item-text">Data Pendapatan</span>
                 </a>
             </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="/datapenghasilan">
+                    <i class="fe fe-dollar-sign fe-16"></i>
+                    <span class="ml-3 item-text">Data Penghasilan</span>
+                </a>
+            </li>
+
         </ul>
     </nav>
 </aside>

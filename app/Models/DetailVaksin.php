@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Vaksin;
-use App\Models\Pengeluaran;
+use App\Models\PengeluaranVaksin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -16,7 +16,7 @@ class DetailVaksin extends Model
     protected $fillable =
         [
             'id_vaksin',
-            'id_pengeluaran',
+            'id_pengeluaran_vaksin',
         ];
 
     public function vaksin()
@@ -24,8 +24,8 @@ class DetailVaksin extends Model
         return $this->belongsTo(Vaksin::class, 'id_vaksin', 'id');
     }
 
-    public function pengeluaran()
+    public function pengeluaranvaksin()
     {
-        return $this->belongsTo(Pengeluaran::class, 'id_pengeluaran', 'id');
+        return $this->belongsTo(PengeluaranVaksin::class, 'id_pengeluaran_vaksin', 'id');
     }
 }

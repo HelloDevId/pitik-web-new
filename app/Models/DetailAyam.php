@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Ayam;
-use App\Models\Pengeluaran;
+use App\Models\PengeluaranAyam;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -16,7 +16,7 @@ class DetailAyam extends Model
     protected $fillable =
         [
             'id_ayam',
-            'id_pengeluaran',
+            'id_pengeluaran_ayam',
         ];
 
     public function ayam()
@@ -24,8 +24,8 @@ class DetailAyam extends Model
         return $this->belongsTo(Ayam::class, 'id_ayam', 'id');
     }
 
-    public function pengeluaran()
+    public function pengeluaranayam()
     {
-        return $this->belongsTo(Pengeluaran::class, 'id_pengeluaran', 'id');
+        return $this->belongsTo(PengeluaranAyam::class, 'id_pengeluaran_ayam', 'id');
     }
 }

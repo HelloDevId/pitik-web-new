@@ -11,8 +11,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('tb_detail_pengeluaran_gaji', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_pengeluaran');
-            $table->foreign('id_pengeluaran')->references('id')->on('tb_pengeluaran')->onDelete('restrict');
+            $table->unsignedBigInteger('id_pengeluaran_gaji');
+            $table->foreign('id_pengeluaran_gaji')->references('id')->on('tb_pengeluaran_gaji')->onDelete('restrict');
             $table->unsignedBigInteger('id_gaji');
             $table->foreign('id_gaji')->references('id')->on('tb_gaji')->onDelete('restrict');
             $table->timestamps();

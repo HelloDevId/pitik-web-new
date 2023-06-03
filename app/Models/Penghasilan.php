@@ -15,7 +15,10 @@ class Penghasilan extends Model
 
     protected $fillable = [
         'id_pendapatan',
-        'id_pengeluaran',
+        'id_pengeluaran_ayam',
+        'id_pengeluaran_vaksin',
+        'id_pengeluaran_pakan',
+        'id_pengeluaran_gaji',
         'tanggal',
     ];
 
@@ -24,8 +27,23 @@ class Penghasilan extends Model
         return $this->belongsTo(Pendapatan::class, 'id_pendapatan', 'id');
     }
 
-    public function pengeluaran()
+    public function pengeluaranayam()
     {
-        return $this->belongsTo(Pengeluaran::class, 'id_pengeluaran', 'id');
+        return $this->belongsTo(PengeluaranAyam::class, 'id_pengeluaran_ayam', 'id');
+    }
+
+    public function pengeluaranvaksin()
+    {
+        return $this->belongsTo(PengeluaranVaksin::class, 'id_pengeluaran_vaksin', 'id');
+    }
+
+    public function pengeluaranpakan()
+    {
+        return $this->belongsTo(PengeluaranPakan::class, 'id_pengeluaran_pakan', 'id');
+    }
+
+    public function pengeluarangaji()
+    {
+        return $this->belongsTo(PengeluaranGaji::class, 'id_pengeluaran_gaji', 'id');
     }
 }
