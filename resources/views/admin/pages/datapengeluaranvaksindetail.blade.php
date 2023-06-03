@@ -44,8 +44,9 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>Customer</th>
-                                            <th>Payment</th>
+                                            <th>Jenis Vaksin</th>
+                                            <th>Total Ayam</th>
+                                            <th>Total Harga</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -53,12 +54,13 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($datapendapatan as $data)
+                                        @foreach ($datapengeluaranvaksin as $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $data->distribusi->tanggal }}</td>
-                                                <td>{{ $data->distribusi->customer }}</td>
-                                                <td>Rp. {{ number_format($data->distribusi->payment) }}</td>
+                                                <td>{{ $data->vaksin->jenis_ovk }}</td>
+                                                <td>{{ $data->vaksin->tanggal_ovk }}</td>
+                                                <td>{{ $data->vaksin->jumlah_ayam }} Ekor</td>
+                                                <td>Rp. {{ number_format($data->vaksin->total_biaya) }}</td>
                                                 <td>
                                                     <button class="btn btn-danger btn-sm" data-toggle="modal"
                                                         data-target="#deleteModal{{ $data->id }}">Delete</button>
@@ -81,7 +83,7 @@
                                                         <div class="modal-body">
                                                             Yakin Ingin Menghapus Data?
                                                         </div>
-                                                        <form action="/deleteiddistribusi/{{ $data->distribusi->id }}"
+                                                        <form action="/deleteidvaksin/{{ $data->vaksin->id }}"
                                                             method="post">
                                                             @csrf
                                                             @method('delete')
@@ -146,7 +148,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/addiddistribusi" method="POST">
+                                            <form action="/addidvaksin" method="POST">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="modal-body">
@@ -155,19 +157,20 @@
                                                     <div hidden class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Id Pendapatan
                                                         </label>
-                                                        <input type="text" value="{{ $pendapatan->id }}"
-                                                            name="id_pendapatan" class="form-control" id="recipient-name">
+                                                        <input type="text" value="{{ $pengeluaranvaksin->id }}"
+                                                            name="id_pengeluaran_vaksin" class="form-control"
+                                                            id="recipient-name">
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="simple-select2">Data Distribusi</label>
-                                                        <select name="id_distribusi" class="form-control">
-                                                            <option selected disabled>Pilih Data Distribusi</option>
-                                                            @foreach ($tampildatadistribusi as $distribusi)
-                                                                <option value="{{ $distribusi->id }}">
-                                                                    {{ $distribusi->customer }} -
-                                                                    {{ $distribusi->tanggal }}
-                                                                    - Rp. {{ number_format($distribusi->payment) }}
+                                                        <label for="simple-select2">Data Vaksin</label>
+                                                        <select name="id_vaksin" class="form-control">
+                                                            <option selected disabled>Pilih Data Vaksin</option>
+                                                            @foreach ($tampildatavaksin as $vaksin)
+                                                                <option value="{{ $vaksin->id }}">
+                                                                    {{ $vaksin->tanggal_ovk }} -
+                                                                    {{ $vaksin->jenis_ovk }}
+                                                                    - Rp. {{ number_format($vaksin->total_biaya) }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

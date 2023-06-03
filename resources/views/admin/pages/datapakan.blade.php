@@ -60,7 +60,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->pembelian }}</td>
                                                 <td>{{ $data->jenis_pakan }}</td>
-                                                <td>{{ $data->stok_pakan }}</td>
+                                                <td>{{ $data->stok_pakan }} Kg</td>
                                                 <td>Rp. {{ number_format($data->harga_kg) }}</td>
                                                 <td>Rp. {{ number_format($data->total_harga) }}</td>
                                                 <td>

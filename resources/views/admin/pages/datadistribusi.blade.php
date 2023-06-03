@@ -65,8 +65,8 @@
                                                 <td>{{ $data->customer }}</td>
                                                 <td>{{ $data->tanggal }}</td>
                                                 <td>{{ $data->contact }}</td>
-                                                <td>{{ $data->harga_satuan }}</td>
-                                                <td>{{ $data->total_ayam }}</td>
+                                                <td>Rp. {{ number_format($data->harga_satuan) }}</td>
+                                                <td>{{ $data->total_ayam }} Ekor</td>
                                                 <td>Rp. {{ number_format($data->payment) }}</td>
                                                 {{-- <td>
                                                     <button class="btn btn-primary btn-sm" data-toggle="modal"

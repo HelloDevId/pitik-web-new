@@ -44,8 +44,8 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>Customer</th>
-                                            <th>Payment</th>
+                                            <th>Jumlah Ayam</th>
+                                            <th>Total Harga</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -53,12 +53,12 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($datapendapatan as $data)
+                                        @foreach ($pengeluaran_ayam as $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $data->distribusi->tanggal }}</td>
-                                                <td>{{ $data->distribusi->customer }}</td>
-                                                <td>Rp. {{ number_format($data->distribusi->payment) }}</td>
+                                                <td>{{ $data->ayam->tanggal_masuk }}</td>
+                                                <td>{{ $data->ayam->total_ayam }} Ekor</td>
+                                                <td>Rp. {{ number_format($data->ayam->total_harga) }}</td>
                                                 <td>
                                                     <button class="btn btn-danger btn-sm" data-toggle="modal"
                                                         data-target="#deleteModal{{ $data->id }}">Delete</button>
@@ -81,8 +81,7 @@
                                                         <div class="modal-body">
                                                             Yakin Ingin Menghapus Data?
                                                         </div>
-                                                        <form action="/deleteiddistribusi/{{ $data->distribusi->id }}"
-                                                            method="post">
+                                                        <form action="/deleteidayam/{{ $data->ayam->id }}" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <div class="modal-footer">
@@ -146,28 +145,30 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/addiddistribusi" method="POST">
+                                            <form action="/addidayam" method="POST">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="modal-body">
 
 
                                                     <div hidden class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Id Pendapatan
+                                                        <label for="recipient-name" class="col-form-label">Id Pengeluaran
+                                                            Ayam
                                                         </label>
-                                                        <input type="text" value="{{ $pendapatan->id }}"
-                                                            name="id_pendapatan" class="form-control" id="recipient-name">
+                                                        <input type="text" value="{{ $pengeluaranayam->id }}"
+                                                            name="id_pengeluaran_ayam" class="form-control"
+                                                            id="recipient-name">
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="simple-select2">Data Distribusi</label>
-                                                        <select name="id_distribusi" class="form-control">
-                                                            <option selected disabled>Pilih Data Distribusi</option>
-                                                            @foreach ($tampildatadistribusi as $distribusi)
-                                                                <option value="{{ $distribusi->id }}">
-                                                                    {{ $distribusi->customer }} -
-                                                                    {{ $distribusi->tanggal }}
-                                                                    - Rp. {{ number_format($distribusi->payment) }}
+                                                        <label for="simple-select2">Data Ayam</label>
+                                                        <select name="id_ayam" class="form-control">
+                                                            <option selected disabled>Pilih Data Ayam</option>
+                                                            @foreach ($tampildataayam as $ayam)
+                                                                <option value="{{ $ayam->id }}">
+                                                                    {{ $ayam->tanggal_masuk }} -
+                                                                    {{ $ayam->total_ayam }} Ekor
+                                                                    - Rp. {{ number_format($ayam->total_harga) }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

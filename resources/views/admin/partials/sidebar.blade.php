@@ -73,9 +73,27 @@
                 </a>
             </li>
             <li class="nav-item w-100">
-                <a class="nav-link" href="/datapengeluaran">
+                <a class="nav-link" href="/datapengeluaranayam">
                     <i class="fe fe-activity fe-16"></i>
-                    <span class="ml-3 item-text">Data Pengeluaran</span>
+                    <span class="ml-3 item-text">Data Pengeluaran Ayam</span>
+                </a>
+            </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="/datapengeluaranvaksin">
+                    <i class="fe fe-activity fe-16"></i>
+                    <span class="ml-3 item-text">Data Pengeluaran Vaksin</span>
+                </a>
+            </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="/datapengeluaranpakan">
+                    <i class="fe fe-activity fe-16"></i>
+                    <span class="ml-3 item-text">Data Pengeluaran Pakan</span>
+                </a>
+            </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="/datapengeluarangaji">
+                    <i class="fe fe-activity fe-16"></i>
+                    <span class="ml-3 item-text">Data Pengeluaran Gaji</span>
                 </a>
             </li>
             <li class="nav-item w-100">

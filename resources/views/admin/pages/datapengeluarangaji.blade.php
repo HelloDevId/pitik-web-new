@@ -44,7 +44,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>Total Pendapatan</th>
+                                            <th>Total Biaya</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -52,14 +52,14 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($datapendapatan as $data)
+                                        @foreach ($pengeluarangaji as $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->tanggal }}</td>
                                                 <td>Rp. {{ number_format($data->total) }}</td>
                                                 <td>
                                                     <a class="btn btn-primary btn-sm"
-                                                        href="/datapendapatan/{{ $data->id }}">Detail</a>
+                                                        href="/datapengeluarangaji/{{ $data->id }}">Detail</a>
 
                                                     <button class="btn btn-warning btn-sm" data-toggle="modal"
                                                         data-target="#editModal{{ $data->id }}">Edit</button>
@@ -85,7 +85,8 @@
                                                         <div class="modal-body">
                                                             Yakin Ingin Menghapus Data?
                                                         </div>
-                                                        <form action="/datapendapatan/{{ $data->id }}" method="post">
+                                                        <form action="/datapengeluarangaji/{{ $data->id }}"
+                                                            method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <div class="modal-footer">
@@ -111,7 +112,8 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form action="/datapendapatan/{{ $data->id }}" method="POST">
+                                                        <form action="/datapengeluarangaji/{{ $data->id }}"
+                                                            method="POST">
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="modal-body">
@@ -149,7 +151,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/datapendapatan" method="POST">
+                                            <form action="/datapengeluarangaji" method="POST">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="modal-body">

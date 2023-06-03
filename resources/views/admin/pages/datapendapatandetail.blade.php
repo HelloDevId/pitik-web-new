@@ -45,6 +45,8 @@
                                             <th>No</th>
                                             <th>Tanggal</th>
                                             <th>Customer</th>
+                                            <th>Jumlah Ayam</th>
+                                            <th>Harga Satuan</th>
                                             <th>Payment</th>
                                             <th>Action</th>
                                         </tr>
@@ -58,6 +60,8 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->distribusi->tanggal }}</td>
                                                 <td>{{ $data->distribusi->customer }}</td>
+                                                <td>{{ $data->distribusi->total_ayam }} Ekor</td>
+                                                <td>Rp. {{ number_format($data->distribusi->harga_satuan) }}</td>
                                                 <td>Rp. {{ number_format($data->distribusi->payment) }}</td>
                                                 <td>
                                                     <button class="btn btn-danger btn-sm" data-toggle="modal"

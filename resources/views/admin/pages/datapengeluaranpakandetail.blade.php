@@ -44,8 +44,9 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Tanggal</th>
-                                            <th>Customer</th>
-                                            <th>Payment</th>
+                                            <th>Jenis Pakan</th>
+                                            <th>Jumlah Pakan</th>
+                                            <th>Harga</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -53,12 +54,13 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($datapendapatan as $data)
+                                        @foreach ($pengeluaran_pakan as $data)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $data->distribusi->tanggal }}</td>
-                                                <td>{{ $data->distribusi->customer }}</td>
-                                                <td>Rp. {{ number_format($data->distribusi->payment) }}</td>
+                                                <td>{{ $data->pakan->pembelian }}</td>
+                                                <td>{{ $data->pakan->jenis_pakan }}</td>
+                                                <th>{{ $data->pakan->stok_pakan }} Kg</th>
+                                                <td>Rp. {{ number_format($data->pakan->total_harga) }}</td>
                                                 <td>
                                                     <button class="btn btn-danger btn-sm" data-toggle="modal"
                                                         data-target="#deleteModal{{ $data->id }}">Delete</button>
@@ -81,8 +83,7 @@
                                                         <div class="modal-body">
                                                             Yakin Ingin Menghapus Data?
                                                         </div>
-                                                        <form action="/deleteiddistribusi/{{ $data->distribusi->id }}"
-                                                            method="post">
+                                                        <form action="/deleteidpakan/{{ $data->pakan->id }}" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <div class="modal-footer">
@@ -146,28 +147,30 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/addiddistribusi" method="POST">
+                                            <form action="/addidpakan" method="POST">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="modal-body">
 
 
                                                     <div hidden class="form-group">
-                                                        <label for="recipient-name" class="col-form-label">Id Pendapatan
+                                                        <label for="recipient-name" class="col-form-label">Id Pengeluaran
+                                                            Pakan
                                                         </label>
-                                                        <input type="text" value="{{ $pendapatan->id }}"
-                                                            name="id_pendapatan" class="form-control" id="recipient-name">
+                                                        <input type="text" value="{{ $datapengeluaranpakan->id }}"
+                                                            name="id_pengeluaran_pakan" class="form-control"
+                                                            id="recipient-name">
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="simple-select2">Data Distribusi</label>
-                                                        <select name="id_distribusi" class="form-control">
-                                                            <option selected disabled>Pilih Data Distribusi</option>
-                                                            @foreach ($tampildatadistribusi as $distribusi)
-                                                                <option value="{{ $distribusi->id }}">
-                                                                    {{ $distribusi->customer }} -
-                                                                    {{ $distribusi->tanggal }}
-                                                                    - Rp. {{ number_format($distribusi->payment) }}
+                                                        <label for="simple-select2">Data Pakan</label>
+                                                        <select name="id_pakan" class="form-control">
+                                                            <option selected disabled>Pilih Data Pakan</option>
+                                                            @foreach ($tampildatapakan as $pakan)
+                                                                <option value="{{ $pakan->id }}">
+                                                                    {{ $pakan->pembelian }} -
+                                                                    {{ $pakan->jenis_pakan }}
+                                                                    - Rp. {{ number_format($pakan->total_harga) }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

@@ -60,7 +60,7 @@
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->tanggal_masuk }}</td>
-                                                <td>{{ $data->jumlah_masuk }}</td>
+                                                <td>{{ $data->jumlah_masuk }} Ekor</td>
                                                 <td>Rp. {{ number_format($data->harga_satuan) }}</td>
                                                 <td>Rp. {{ number_format($data->total_harga) }}</td>
                                                 <td>{{ $data->mati }}</td>
