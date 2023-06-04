@@ -18,17 +18,23 @@ class VaksinController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tanggal_ovk' => 'required',
+            'tanggal_ovk' => 'required|date',
             'jenis_ovk' => 'required',
-            'jumlah_ayam' => 'required',
-            'next_ovk' => 'required',
-            'biaya_ovk' => 'required',
+            'jumlah_ayam' => 'required|numeric|integer',
+            'next_ovk' => 'required|date',
+            'biaya_ovk' => 'required|numeric|integer',
         ], [
                 'tanggal_ovk.required' => 'Tanggal tidak boleh kosong',
+                'tanggal_ovk.date' => 'Tanggal harus berupa tanggal',
                 'jenis_ovk.required' => 'Jenis Vaksin tidak boleh kosong',
                 'jumlah_ayam.required' => 'Jumlah Vaksin tidak boleh kosong',
+                'jumlah_ayam.numeric' => 'Jumlah Vaksin harus berupa angka',
+                'jumlah_ayam.integer' => 'Jumlah Vaksin harus berupa angka',
                 'next_ovk.required' => 'Harga Satuan tidak boleh kosong',
+                'next_ovk.date' => 'Harga Satuan harus berupa tanggal',
                 'biaya_ovk.required' => 'Harga Satuan tidak boleh kosong',
+                'biaya_ovk.numeric' => 'Harga Satuan harus berupa angka',
+                'biaya_ovk.integer' => 'Harga Satuan harus berupa angka',
             ]);
 
         $totalbiaya = $request->biaya_ovk * $request->jumlah_ayam;
@@ -48,17 +54,23 @@ class VaksinController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'tanggal_ovk' => 'required',
+            'tanggal_ovk' => 'required|date',
             'jenis_ovk' => 'required',
-            'jumlah_ayam' => 'required',
-            'next_ovk' => 'required',
-            'biaya_ovk' => 'required',
+            'jumlah_ayam' => 'required|numeric|integer',
+            'next_ovk' => 'required|date',
+            'biaya_ovk' => 'required|numeric|integer',
         ], [
                 'tanggal_ovk.required' => 'Tanggal tidak boleh kosong',
+                'tanggal_ovk.date' => 'Tanggal harus berupa tanggal',
                 'jenis_ovk.required' => 'Jenis Vaksin tidak boleh kosong',
                 'jumlah_ayam.required' => 'Jumlah Vaksin tidak boleh kosong',
+                'jumlah_ayam.numeric' => 'Jumlah Vaksin harus berupa angka',
+                'jumlah_ayam.integer' => 'Jumlah Vaksin harus berupa angka',
                 'next_ovk.required' => 'Harga Satuan tidak boleh kosong',
+                'next_ovk.date' => 'Harga Satuan harus berupa tanggal',
                 'biaya_ovk.required' => 'Harga Satuan tidak boleh kosong',
+                'biaya_ovk.numeric' => 'Harga Satuan harus berupa angka',
+                'biaya_ovk.integer' => 'Harga Satuan harus berupa angka',
             ]);
 
         $totalbiaya = $request->biaya_ovk * $request->jumlah_ayam;

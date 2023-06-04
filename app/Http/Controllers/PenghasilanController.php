@@ -26,20 +26,31 @@ class PenghasilanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tanggal' => 'required',
-            'pendapatan' => 'required',
-            'pengeluaran_ayam' => 'required',
-            'pengeluaran_pakan' => 'required',
-            'pengeluaran_gaji' => 'required',
-            'pengeluaran_vaksin' => 'required',
+            'tanggal' => 'required|date',
+            'pendapatan' => 'required|numeric|integer',
+            'pengeluaran_ayam' => 'required|numeric|integer',
+            'pengeluaran_pakan' => 'required|numeric|integer',
+            'pengeluaran_gaji' => 'required|numeric|integer',
+            'pengeluaran_vaksin' => 'required|numeric|integer',
 
         ], [
                 'tanggal' => 'Tanggal harus diisi!',
+                'tanggal.date' => 'Tanggal harus berupa tanggal!',
                 'pendapatan' => 'Pendapatan harus diisi!',
+                'pendapatan.numeric' => 'Pendapatan harus berupa angka!',
+                'pendapatan.integer' => 'Pendapatan harus berupa angka!',
                 'pengeluaran_ayam' => 'Pengeluaran Ayam harus diisi!',
+                'pengeleuran_ayam.numeric' => 'Pengeluaran Ayam harus berupa angka!',
+                'pengeluaran_ayam.integer' => 'Pengeluaran Ayam harus berupa angka!',
                 'pengeluaran_pakan' => 'Pengeluaran Pakan harus diisi!',
+                'pengeluaran_pakan.numeric' => 'Pengeluaran Pakan harus berupa angka!',
+                'pengeluaran_pakan.integer' => 'Pengeluaran Pakan harus berupa angka!',
                 'pengeluaran_gaji' => 'Pengeluaran Gaji harus diisi!',
+                'pengeluaran_gaji.numeric' => 'Pengeluaran Gaji harus berupa angka!',
+                'pengeluaran_gaji.integer' => 'Pengeluaran Gaji harus berupa angka!',
                 'pengeluaran_vaksin' => 'Pengeluaran Vaksin harus diisi!',
+                'pengeluaran_vaksin.numeric' => 'Pengeluaran Vaksin harus berupa angka!',
+                'pengeluaran_vaksin.integer' => 'Pengeluaran Vaksin harus berupa angka!',
             ]);
 
         $penghasilan = $request->pendapatan - ($request->pengeluaran_ayam + $request->pengeluaran_pakan + $request->pengeluaran_gaji + $request->pengeluaran_vaksin);
@@ -62,16 +73,25 @@ class PenghasilanController extends Controller
     {
         $request->validate([
 
-            'tanggal' => 'required',
-            'pendapatan' => 'required',
-            'pengeluaran_ayam' => 'required',
-            'pengeluaran_pakan' => 'required',
-            'pengeluaran_gaji' => 'required',
-            'pengeluaran_vaksin' => 'required',
+            'tanggal' => 'required|date',
+            'pendapatan' => 'required|numeric|integer',
+            'pengeluaran_ayam' => 'required|numeric|integer',
+            'pengeluaran_pakan' => 'required|numeric|integer',
+            'pengeluaran_gaji' => 'required|numeric|integer',
+            'pengeluaran_vaksin' => 'required|numeric|integer',
 
         ], [
                 'tanggal' => 'Tanggal harus diisi!',
+                'pendapatan.numeric' => 'Pendapatan harus berupa angka!',
                 'pendapatan' => 'Pendapatan harus diisi!',
+                'pengeluaran_ayam.numeric' => 'Pengeluaran Ayam harus berupa angka!',
+                'pengeluaran_pakan.numeric' => 'Pengeluaran Pakan harus berupa angka!',
+                'pengeluaran_gaji.numeric' => 'Pengeluaran Gaji harus berupa angka!',
+                'pengeluaran_vaksin.numeric' => 'Pengeluaran Vaksin harus berupa angka!',
+                'pendapatan.integer' => 'Pendapatan harus berupa angka!',
+                'pengeluaran_ayam.integer' => 'Pengeluaran Ayam harus berupa angka!',
+                'pengeluaran_pakan.integer' => 'Pengeluaran Pakan harus berupa angka!',
+                'pengeluaran_gaji.integer' => 'Pengeluaran Gaji harus berupa angka!',
                 'pengeluaran_ayam' => 'Pengeluaran Ayam harus diisi!',
                 'pengeluaran_pakan' => 'Pengeluaran Pakan harus diisi!',
                 'pengeluaran_gaji' => 'Pengeluaran Gaji harus diisi!',

@@ -18,15 +18,20 @@ class GajiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_karyawan' => 'required',
-            'jabatan' => 'required',
-            'gaji' => 'required',
-            'tanggal' => 'required',
+            'nama_karyawan' => 'required|string',
+            'jabatan' => 'required|string',
+            'gaji' => 'required|numeric|integer',
+            'tanggal' => 'required|date',
         ], [
                 'nama_karyawan.required' => 'Nama tidak boleh kosong',
+                'nama_karyawan.string' => 'Nama harus berupa huruf',
                 'jabatan.required' => 'Jabatan tidak boleh kosong',
+                'jabatan.string' => 'Jabatan harus berupa huruf',
                 'gaji.required' => 'Gaji tidak boleh kosong',
+                'gaji.numeric' => 'Gaji harus berupa angka',
+                'gaji.integer' => 'Gaji harus berupa angka',
                 'tanggal.required' => 'Tanggal tidak boleh kosong',
+                'tanggal.date' => 'Tanggal harus berupa tanggal',
             ]);
 
         Gaji::create([
@@ -42,15 +47,20 @@ class GajiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_karyawan' => 'required',
-            'jabatan' => 'required',
-            'gaji' => 'required',
-            'tanggal' => 'required',
+            'nama_karyawan' => 'required|string',
+            'jabatan' => 'required|string',
+            'gaji' => 'required|numeric|integer',
+            'tanggal' => 'required|date',
         ], [
                 'nama_karyawan.required' => 'Nama tidak boleh kosong',
+                'nama_karyawan.string' => 'Nama harus berupa huruf',
                 'jabatan.required' => 'Jabatan tidak boleh kosong',
+                'jabatan.string' => 'Jabatan harus berupa huruf',
                 'gaji.required' => 'Gaji tidak boleh kosong',
+                'gaji.numeric' => 'Gaji harus berupa angka',
+                'gaji.integer' => 'Gaji harus berupa angka',
                 'tanggal.required' => 'Tanggal tidak boleh kosong',
+                'tanggal.date' => 'Tanggal harus berupa tanggal',
             ]);
 
         Gaji::where('id', $id)->update([

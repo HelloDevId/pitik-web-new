@@ -18,17 +18,26 @@ class DistribusiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'customer' => 'required',
-            'tanggal' => 'required',
-            'total_ayam' => 'required',
-            'harga_satuan' => 'required',
-            'contact' => 'required',
+            'customer' => 'required|string',
+            'tanggal' => 'required|date',
+            'total_ayam' => 'required|numeric|integer',
+            'harga_satuan' => 'required|numeric|integer',
+            'contact' => 'required|numeric|min:11',
         ], [
                 'customer.required' => 'Customer tidak boleh kosong',
+                'customer.string' => 'Customer harus berupa huruf',
                 'tanggal.required' => 'Tanggal tidak boleh kosong',
+                'tanggal.date' => 'Tanggal harus berupa tanggal',
                 'total_ayam.required' => 'Total Ayam tidak boleh kosong',
+                'total_ayam.numeric' => 'Total Ayam harus berupa angka',
+                'total_ayam.integer' => 'Total Ayam harus berupa angka',
                 'harga_satuan.required' => 'Harga Satuan tidak boleh kosong',
+                'harga_satuan.numeric' => 'Harga Satuan harus berupa angka',
+                'harga_satuan.integer' => 'Harga Satuan harus berupa angka',
                 'contact.required' => 'Contact tidak boleh kosong',
+                'contact.numeric' => 'Contact harus berupa angka',
+                'contact.min' => 'Contact minimal 11 angka',
+
             ]);
 
         $totalharga = $request->harga_satuan * $request->total_ayam;
@@ -49,17 +58,23 @@ class DistribusiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'customer' => 'required',
-            'tanggal' => 'required',
-            'total_ayam' => 'required',
-            'harga_satuan' => 'required',
-            'contact' => 'required',
+            'customer' => 'required|string',
+            'tanggal' => 'required|date',
+            'total_ayam' => 'required|numeric|integer',
+            'harga_satuan' => 'required|numeric|integer',
+            'contact' => 'required|numeric|min:11',
         ], [
                 'customer.required' => 'Customer tidak boleh kosong',
+                'customer.string' => 'Customer harus berupa huruf',
                 'tanggal.required' => 'Tanggal tidak boleh kosong',
+                'tanggal.date' => 'Tanggal harus berupa tanggal',
                 'total_ayam.required' => 'Total Ayam tidak boleh kosong',
+                'harga_satuan.numeric' => 'Harga Satuan harus berupa angka',
+                'harga_satuan.integer' => 'Harga Satuan harus berupa angka',
                 'harga_satuan.required' => 'Harga Satuan tidak boleh kosong',
+                'contact.numeric' => 'Contact harus berupa angka',
                 'contact.required' => 'Contact tidak boleh kosong',
+                'contact.min' => 'Contact minimal 11 angka',
             ]);
 
         $totalharga = $request->harga_satuan * $request->total_ayam;
