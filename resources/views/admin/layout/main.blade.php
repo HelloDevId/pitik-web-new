@@ -168,7 +168,7 @@
                 </div>
             </div>
             <!-- Profil Modal -->
-            {{-- <div class="modal fade" id="profilModal" tabindex="-1" role="dialog"
+            <div class="modal fade" id="profilModal" tabindex="-1" role="dialog"
                 aria-labelledby="defaultModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -184,9 +184,8 @@
 
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Name</label>
-                                    <input type="text" name="user_fullname"
-                                        value="{{ Auth::User()->user_fullname }}" class="form-control"
-                                        id="recipient-name">
+                                    <input type="text" name="nama" value="{{ Auth::User()->nama }}"
+                                        class="form-control" id="recipient-name">
                                 </div>
 
                                 <div class="form-group">
@@ -220,10 +219,10 @@
                         </form>
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
             <!-- Logout Modal -->
-            {{-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
                 aria-labelledby="defaultModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -242,7 +241,7 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </main> <!-- main -->
     </div> <!-- .wrapper -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"

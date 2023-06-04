@@ -63,8 +63,8 @@
                                                 <td>{{ $data->jumlah_masuk }} Ekor</td>
                                                 <td>Rp. {{ number_format($data->harga_satuan) }}</td>
                                                 <td>Rp. {{ number_format($data->total_harga) }}</td>
-                                                <td>{{ $data->mati }}</td>
-                                                <td>{{ $data->total_ayam }}</td>
+                                                <td>{{ $data->mati }} Ekor</td>
+                                                <td>{{ $data->total_ayam }} Ekor</td>
                                                 <td>
 
                                                     <button class="btn btn-warning btn-sm" data-toggle="modal"

@@ -36,7 +36,8 @@ class PakanController extends Controller
             'jenis_pakan' => $request->jenis_pakan,
             'stok_pakan' => $request->stok_pakan,
             'harga_kg' => $request->harga_kg,
-            'total_harga' => $totalharga
+            'total_harga' => $totalharga,
+            'sisa_stok_pakan' => $request->stok_pakan,
         ]);
 
         return redirect('/datapakan')->with('create', 'Data Berhasil Ditambahkan');
@@ -49,12 +50,14 @@ class PakanController extends Controller
             'jenis_pakan' => 'required',
             'stok_pakan' => 'required',
             'harga_kg' => 'required',
+            'sisa_stok_pakan' => 'required',
 
         ], [
                 'pembelian.required' => 'Tanggal Masuk tidak boleh kosong',
                 'jenis_pakan.required' => 'Jumlah Masuk tidak boleh kosong',
                 'stok_pakan.required' => 'Harga Satuan tidak boleh kosong',
                 'harga_kg.required' => 'Total Harga tidak boleh kosong',
+                'sisa_stok_pakan.required' => 'Sisa Stok Pakan tidak boleh kosong'
 
             ]);
 
@@ -65,7 +68,8 @@ class PakanController extends Controller
             'jenis_pakan' => $request->jenis_pakan,
             'stok_pakan' => $request->stok_pakan,
             'harga_kg' => $request->harga_kg,
-            'total_harga' => $totalharga
+            'total_harga' => $totalharga,
+            'sisa_stok_pakan' => $request->sisa_stok_pakan,
         ]);
 
         return redirect('/datapakan')->with('update', 'Data Berhasil Diubah');

@@ -45,9 +45,10 @@
                                             <th>No</th>
                                             <th>Tanggal Pembelian</th>
                                             <th>Jenis Pakan</th>
-                                            <th>Stok Pakan</th>
+                                            <th>Stok Pakan Awal</th>
                                             <th>Harga Per-Kg</th>
                                             <th>Total Harga</th>
+                                            <th>Sisa Stok Pakan</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -63,6 +64,7 @@
                                                 <td>{{ $data->stok_pakan }} Kg</td>
                                                 <td>Rp. {{ number_format($data->harga_kg) }}</td>
                                                 <td>Rp. {{ number_format($data->total_harga) }}</td>
+                                                <td>{{ $data->sisa_stok_pakan }} Kg</td>
                                                 <td>
 
                                                     <button class="btn btn-warning btn-sm" data-toggle="modal"
@@ -150,6 +152,14 @@
                                                                         id="recipient-name">
                                                                 </div>
 
+                                                                <div class="form-group">
+                                                                    <label for="recipient-name"
+                                                                        class="col-form-label">Sisa Stok Pakan</label>
+                                                                    <input type="text"
+                                                                        value=" {{ $data->sisa_stok_pakan }}"
+                                                                        name="sisa_stok_pakan" class="form-control"
+                                                                        id="recipient-name">
+                                                                </div>
 
                                                             </div>
                                                             <div class="modal-footer">

@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->integer('stok_pakan')->nullable();
             $table->integer('harga_kg')->nullable();
             $table->integer('total_harga')->nullable();
+            $table->integer('sisa_stok_pakan')->nullable();
             $table->timestamps();
         });
     }

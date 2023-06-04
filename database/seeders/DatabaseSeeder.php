@@ -73,6 +73,7 @@ class DatabaseSeeder extends Seeder
             'stok_pakan' => null,
             'harga_kg' => null,
             'total_harga' => 0,
+            'sisa_stok_pakan' => null,
         ]);
 
         Vaksin::create([

@@ -18,7 +18,8 @@ class Pakan extends Model
         'jenis_pakan',
         'stok_pakan',
         'harga_kg',
-        'total_harga'
+        'total_harga',
+        'sisa_stok_pakan',
 
     ];
 

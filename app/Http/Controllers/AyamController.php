@@ -30,7 +30,7 @@ class AyamController extends Controller
             ]);
 
         $totalayam = $request->jumlah_masuk - $request->mati;
-        $totalharga = $request->harga_satuan * $totalayam;
+        $totalharga = $request->harga_satuan * $request->jumlah_masuk;
 
         Ayam::create([
             'tanggal_masuk' => $request->tanggal_masuk,
@@ -59,7 +59,7 @@ class AyamController extends Controller
             ]);
 
         $totalayam = $request->jumlah_masuk - $request->mati;
-        $totalharga = $request->harga_satuan * $totalayam;
+        $totalharga = $request->harga_satuan * $request->jumlah_masuk;
 
         Ayam::where('id', $id)->update([
             'tanggal_masuk' => $request->tanggal_masuk,

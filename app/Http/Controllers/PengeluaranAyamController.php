@@ -20,7 +20,7 @@ class PengeluaranAyamController extends Controller
             ->get();
 
         return view('admin.pages.datapengeluaranayam', [
-            'pengeluaran_ayam' => $pengeluaran_ayam
+            'pengeluaran_ayam' => $pengeluaran_ayam,
         ]);
     }
 
