@@ -12,7 +12,7 @@
                     <div class="col">
                         <h2 class="h5 page-title">Welcome!</h2>
                     </div>
-                    <div class="col-auto">
+                    {{-- <div class="col-auto">
                         <form class="form-inline">
                             <div class="form-group d-none d-lg-inline">
                                 <label for="reportrange" class="sr-only">Date Ranges</label>
@@ -27,7 +27,7 @@
                                         class="fe fe-filter fe-16 text-muted"></span></button>
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
                     @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible fade show">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span

@@ -7,9 +7,9 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="mb-2 page-title">Data Pengeluaran Vaksin Detail</h2>
-                <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool,
+                {{-- <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool,
                     built upon the foundations of progressive enhancement, that adds all of these advanced features to any
-                    HTML table. </p>
+                    HTML table. </p> --}}
                 <div class="row my-4">
                     <!-- Small table -->
                     <div class="col-md-12">
@@ -23,9 +23,9 @@
 
 
                                         <?php
-                                        
+
                                         $nomer = 1;
-                                        
+
                                         ?>
 
                                         @foreach ($errors->all() as $error)
