@@ -23,9 +23,9 @@
 
 
                                         <?php
-
+                                        
                                         $nomer = 1;
-
+                                        
                                         ?>
 
                                         @foreach ($errors->all() as $error)
@@ -140,7 +140,7 @@
                                                                         id="recipient-name">
                                                                 </div>
 
-                                                                <div class="form-group">
+                                                                {{-- <div class="form-group">
                                                                     <label for="recipient-name"
                                                                         class="col-form-label">Pendapatan</label>
                                                                     <input type="text" value="{{ $data->pendapatan }}"
@@ -182,7 +182,101 @@
                                                                         value="{{ $data->pengeluaran_gaji }}"
                                                                         name="pengeluaran_gaji" class="form-control"
                                                                         id="recipient-name">
+                                                                </div> --}}
+
+                                                                <div class="form-group">
+                                                                    <label for="simple-select2">Data Pendapatan</label>
+                                                                    <select name="pendapatan" class="form-control">
+                                                                        {{-- <option selected value="{{ $data->pendapatan }}">
+                                                                            {{ $data->tanggal }}
+                                                                            - Rp. {{ number_format($data->pendapatan) }}
+                                                                        </option> --}}
+                                                                        @foreach ($datapendapatan as $data)
+                                                                            <option value="{{ $data->total }}">
+                                                                                {{ $data->tanggal }}
+                                                                                - Rp. {{ number_format($data->total) }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
                                                                 </div>
+
+
+                                                                <div class="form-group">
+                                                                    <label for="simple-select2">Data Pengeluaran
+                                                                        Ayam</label>
+                                                                    <select name="pengeluaran_ayam" class="form-control">
+                                                                        {{-- <option selected
+                                                                            value="{{ $data->pengeluaran_ayam }}">
+                                                                            {{ $data->tanggal }}
+                                                                            - Rp.
+                                                                            {{ number_format($data->pengeluaran_ayam) }}
+                                                                        </option> --}}
+                                                                        @foreach ($datapengeluaranayam as $data)
+                                                                            <option value="{{ $data->total }}">
+                                                                                {{ $data->tanggal }}
+                                                                                - Rp. {{ number_format($data->total) }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="simple-select2">Data Pengeluaran
+                                                                        Pakan</label>
+                                                                    <select name="pengeluaran_pakan" class="form-control">
+                                                                        {{-- <option selected
+                                                                            value="{{ $data->pengeluaran_pakan }}">
+                                                                            {{ $data->tanggal }}
+                                                                            - Rp.
+                                                                            {{ number_format($data->pengeluaran_pakan) }}
+                                                                        </option> --}}
+                                                                        @foreach ($datapengeluaranpakan as $data)
+                                                                            <option value="{{ $data->total }}">
+                                                                                {{ $data->tanggal }}
+                                                                                - Rp. {{ number_format($data->total) }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="simple-select2">Data Pengeluaran
+                                                                        Vaksin</label>
+                                                                    <select name="pengeluaran_vaksin" class="form-control">
+                                                                        {{-- <option selected
+                                                                            value="{{ $data->pengeluaran_vaksin }}">
+                                                                            {{ $data->tanggal }}
+                                                                            - Rp.
+                                                                            {{ number_format($data->pengeluaran_vaksin) }}
+                                                                        </option> --}}
+                                                                        @foreach ($datapengeluaranvaksin as $data)
+                                                                            <option value="{{ $data->total }}">
+                                                                                {{ $data->tanggal }}
+                                                                                - Rp. {{ number_format($data->total) }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="simple-select2">Data Pengeluaran
+                                                                        Gaji</label>
+                                                                    <select name="pengeluaran_gaji" class="form-control">
+                                                                        {{-- <option selected
+                                                                            value="{{ $data->pengeluaran_gaji }}">
+                                                                            {{ $data->tanggal }}
+                                                                            - Rp.
+                                                                            {{ number_format($data->pengeluaran_gaji) }}
+                                                                        </option> --}}
+                                                                        @foreach ($datapengeluarangaji as $data)
+                                                                            <option value="{{ $data->total }}">
+                                                                                {{ $data->tanggal }}
+                                                                                - Rp. {{ number_format($data->total) }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+
 
                                                             </div>
                                                             <div class="modal-footer">
@@ -221,39 +315,106 @@
                                                             class="form-control" id="recipient-name">
                                                     </div>
 
-                                                    <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <label for="recipient-name"
                                                             class="col-form-label">Pendapatan</label>
                                                         <input type="text" value="" name="pendapatan"
                                                             class="form-control" id="recipient-name">
-                                                    </div>
+                                                    </div> --}}
 
-                                                    <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Pengeluaran
                                                             Ayam</label>
                                                         <input type="text" value="" name="pengeluaran_ayam"
                                                             class="form-control" id="recipient-name">
-                                                    </div>
+                                                    </div> --}}
 
-                                                    <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Pengeluaran
                                                             Pakan</label>
                                                         <input type="text" value="" name="pengeluaran_pakan"
                                                             class="form-control" id="recipient-name">
-                                                    </div>
+                                                    </div> --}}
 
-                                                    <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Pengeluaran
                                                             Vaksin</label>
                                                         <input type="text" value="" name="pengeluaran_vaksin"
                                                             class="form-control" id="recipient-name">
-                                                    </div>
+                                                    </div> --}}
 
-                                                    <div class="form-group">
+
+                                                    {{-- <div class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Pengeluaran
                                                             Gaji</label>
                                                         <input type="text" value="" name="pengeluaran_gaji"
                                                             class="form-control" id="recipient-name">
+                                                    </div> --}}
+
+                                                    <div class="form-group">
+                                                        <label for="simple-select2">Data Pendapatan</label>
+                                                        <select name="pendapatan" class="form-control">
+                                                            <option selected disabled>Pilih Data Pendapatan</option>
+                                                            @foreach ($datapendapatan as $data)
+                                                                <option value="{{ $data->total }}">
+                                                                    {{ $data->tanggal }}
+                                                                    - Rp. {{ number_format($data->total) }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label for="simple-select2">Data Pengeluaran Ayam</label>
+                                                        <select name="pengeluaran_ayam" class="form-control">
+                                                            <option selected disabled>Pilih Data Pengeluaran Ayam</option>
+                                                            @foreach ($datapengeluaranayam as $data)
+                                                                <option value="{{ $data->total }}">
+                                                                    {{ $data->tanggal }}
+                                                                    - Rp. {{ number_format($data->total) }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="simple-select2">Data Pengeluaran Pakan</label>
+                                                        <select name="pengeluaran_pakan" class="form-control">
+                                                            <option selected disabled>Pilih Data Pengeluaran Pakan</option>
+                                                            @foreach ($datapengeluaranpakan as $data)
+                                                                <option value="{{ $data->total }}">
+                                                                    {{ $data->tanggal }}
+                                                                    - Rp. {{ number_format($data->total) }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="simple-select2">Data Pengeluaran Vaksin</label>
+                                                        <select name="pengeluaran_vaksin" class="form-control">
+                                                            <option selected disabled>Pilih Data Pengeluaran Vaksin</option>
+                                                            @foreach ($datapengeluaranvaksin as $data)
+                                                                <option value="{{ $data->total }}">
+                                                                    {{ $data->tanggal }}
+                                                                    - Rp. {{ number_format($data->total) }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="simple-select2">Data Pengeluaran Gaji</label>
+                                                        <select name="pengeluaran_gaji" class="form-control">
+                                                            <option selected disabled>Pilih Data Pengeluaran Gaji</option>
+                                                            @foreach ($datapengeluarangaji as $data)
+                                                                <option value="{{ $data->total }}">
+                                                                    {{ $data->tanggal }}
+                                                                    - Rp. {{ number_format($data->total) }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
 
 
