@@ -9,7 +9,7 @@
                 <h2 class="mb-2 page-title">Data Pengeluaran Ayam Detail</h2>
                 {{-- <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool,
                     built upon the foundations of progressive enhancement, that adds all of these advanced features to any --}}
-                    HTML table. </p>
+                HTML table. </p>
                 <div class="row my-4">
                     <!-- Small table -->
                     <div class="col-md-12">
@@ -23,9 +23,9 @@
 
 
                                         <?php
-
+                                        
                                         $nomer = 1;
-
+                                        
                                         ?>
 
                                         @foreach ($errors->all() as $error)
@@ -34,7 +34,7 @@
                                     </div>
                                 @endif
                                 <!-- table -->
-                                <table class="table datatables" id="dataTable-1">
+                                <table class="table datatables responsive nowrap" style="width:100%" id="dataTable-1">
                                     <div class="align-right text-right mb-3">
                                         <button class="btn btn-success btn-sm" data-toggle="modal"
                                             data-target="#addModal">Add</button>

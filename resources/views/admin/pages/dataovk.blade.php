@@ -34,7 +34,7 @@
                                     </div>
                                 @endif
                                 <!-- table -->
-                                <table class="table datatables" id="dataTable-1">
+                                <table class="table datatables responsive nowrap" style="width:100%" id="dataTable-1">
                                     <div class="align-right text-right mb-3">
                                         <button class="btn btn-success btn-sm" data-toggle="modal"
                                             data-target="#addModal">Add</button>
