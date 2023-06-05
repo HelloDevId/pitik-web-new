@@ -9,7 +9,7 @@ class PakanController extends Controller
 {
     public function index()
     {
-        $pakan = Pakan::where('pembelian', '!=', null)->get();
+        $pakan = Pakan::where('pembelian', '!=', null)->orderBy('pembelian', 'desc')->get();
         return view('admin.pages.datapakan', [
             'pakan' => $pakan
         ]);
@@ -20,8 +20,8 @@ class PakanController extends Controller
         $request->validate([
             'pembelian' => 'required|date',
             'jenis_pakan' => 'required',
-            'stok_pakan' => 'required|numeric|integer',
-            'harga_kg' => 'required|numeric|integer',
+            'stok_pakan' => 'required|numeric|integer|gte:0',
+            'harga_kg' => 'required|numeric|integer|gte:0',
         ], [
                 'pembelian.required' => 'Tanggal Masuk tidak boleh kosong',
                 'pembelian.date' => 'Tanggal Masuk harus berupa tanggal',
@@ -33,6 +33,8 @@ class PakanController extends Controller
                 'harga_kg.required' => 'Total Harga tidak boleh kosong',
                 'harga_kg.numeric' => 'Total Harga harus berupa angka',
                 'harga_kg.integer' => 'Total Harga harus berupa angka',
+                'stok_pakan.gte' => 'Jumlah Masuk tidak boleh kurang dari 0',
+                'harga_kg.gte' => 'Harga Satuan tidak boleh kurang dari 0',
             ]);
 
         $totalharga = $request->harga_kg * $request->stok_pakan;
@@ -54,9 +56,9 @@ class PakanController extends Controller
         $request->validate([
             'pembelian' => 'required|date',
             'jenis_pakan' => 'required',
-            'stok_pakan' => 'required|numeric|integer',
-            'harga_kg' => 'required|numeric|integer',
-            'sisa_stok_pakan' => 'required|numeric|integer',
+            'stok_pakan' => 'required|numeric|integer|gte:0',
+            'harga_kg' => 'required|numeric|integer|gte:0',
+            'sisa_stok_pakan' => 'required|numeric|integer|gte:0|lte:stok_pakan',
 
         ], [
                 'pembelian.required' => 'Tanggal Masuk tidak boleh kosong',
@@ -71,7 +73,10 @@ class PakanController extends Controller
                 'sisa_stok_pakan.required' => 'Sisa Stok Pakan tidak boleh kosong',
                 'sisa_stok_pakan.numeric' => 'Sisa Stok Pakan harus berupa angka',
                 'sisa_stok_pakan.integer' => 'Sisa Stok Pakan harus berupa angka',
-
+                'stok_pakan.gte' => 'Jumlah Masuk tidak boleh kurang dari 0',
+                'harga_kg.gte' => 'Harga Satuan tidak boleh kurang dari 0',
+                'sisa_stok_pakan.gte' => 'Sisa Stok Pakan tidak boleh kurang dari 0',
+                'sisa_stok_pakan.lte' => 'Sisa Stok Pakan tidak boleh lebih dari stok pakan',
             ]);
 
         $totalharga = $request->harga_kg * $request->stok_pakan;

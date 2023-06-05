@@ -16,6 +16,7 @@ class PendapatanController extends Controller
             ->join('tb_detail_pendapatan', 'tb_pendapatan.id', '=', 'tb_detail_pendapatan.id_pendapatan')
             ->join('tb_distribusi', 'tb_detail_pendapatan.id_distribusi', '=', 'tb_distribusi.id')
             ->select('tb_pendapatan.*', DB::raw('SUM(tb_distribusi.payment) as total'))
+            ->orderBy('tb_pendapatan.tanggal', 'desc')
             ->groupBy('tb_pendapatan.id')
             ->get();
 

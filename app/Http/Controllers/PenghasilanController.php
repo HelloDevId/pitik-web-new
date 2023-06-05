@@ -19,6 +19,7 @@ class PenghasilanController extends Controller
             ->join('tb_detail_pendapatan', 'tb_pendapatan.id', '=', 'tb_detail_pendapatan.id_pendapatan')
             ->join('tb_distribusi', 'tb_detail_pendapatan.id_distribusi', '=', 'tb_distribusi.id')
             ->select('tb_pendapatan.*', DB::raw('SUM(tb_distribusi.payment) as total'))
+            ->orderBy('tb_pendapatan.tanggal', 'desc')
             ->groupBy('tb_pendapatan.id')
             ->get();
 
@@ -26,6 +27,7 @@ class PenghasilanController extends Controller
             ->join('tb_detail_pengeluaran_ayam', 'tb_pengeluaran_ayam.id', '=', 'tb_detail_pengeluaran_ayam.id_pengeluaran_ayam')
             ->join('tb_ayam', 'tb_detail_pengeluaran_ayam.id_ayam', '=', 'tb_ayam.id')
             ->select('tb_pengeluaran_ayam.*', DB::raw('SUM(tb_ayam.total_harga) as total'), DB::raw('SUM(tb_ayam.total_ayam) as jumlahayam'), )
+            ->orderBy('tb_pengeluaran_ayam.tanggal', 'desc')
             ->groupBy('tb_pengeluaran_ayam.id')
             ->get();
 
@@ -33,6 +35,7 @@ class PenghasilanController extends Controller
             ->join('tb_detail_pengeluaran_vaksin', 'tb_pengeluaran_vaksin.id', '=', 'tb_detail_pengeluaran_vaksin.id_pengeluaran_vaksin')
             ->join('tb_vaksin', 'tb_detail_pengeluaran_vaksin.id_vaksin', '=', 'tb_vaksin.id')
             ->select('tb_pengeluaran_vaksin.*', DB::raw('SUM(tb_vaksin.total_biaya) as total'), DB::raw('SUM(tb_vaksin.jumlah_ayam) as jumlahayam'), )
+            ->orderBy('tb_pengeluaran_vaksin.tanggal', 'desc')
             ->groupBy('tb_pengeluaran_vaksin.id')
             ->get();
 
@@ -40,6 +43,7 @@ class PenghasilanController extends Controller
             ->join('tb_detail_pengeluaran_pakan', 'tb_pengeluaran_pakan.id', '=', 'tb_detail_pengeluaran_pakan.id_pengeluaran_pakan')
             ->join('tb_pakan', 'tb_detail_pengeluaran_pakan.id_pakan', '=', 'tb_pakan.id')
             ->select('tb_pengeluaran_pakan.*', DB::raw('SUM(tb_pakan.total_harga) as total'), DB::raw('SUM(tb_pakan.stok_pakan) as totalpakan'), )
+            ->orderBy('tb_pengeluaran_pakan.tanggal', 'desc')
             ->groupBy('tb_pengeluaran_pakan.id')
             ->get();
 
@@ -47,6 +51,7 @@ class PenghasilanController extends Controller
             ->join('tb_detail_pengeluaran_gaji', 'tb_pengeluaran_gaji.id', '=', 'tb_detail_pengeluaran_gaji.id_pengeluaran_gaji')
             ->join('tb_gaji', 'tb_detail_pengeluaran_gaji.id_gaji', '=', 'tb_gaji.id')
             ->select('tb_pengeluaran_gaji.*', DB::raw('SUM(tb_gaji.gaji) as total'))
+            ->orderBy('tb_pengeluaran_gaji.tanggal', 'desc')
             ->groupBy('tb_pengeluaran_gaji.id')
             ->get();
 

@@ -9,7 +9,7 @@ class GajiController extends Controller
 {
     public function index()
     {
-        $gaji = Gaji::where('tanggal', '!=', null)->get();
+        $gaji = Gaji::where('tanggal', '!=', null)->orderBy('tanggal', 'desc')->get();
         return view('admin.pages.datatenagakerja', [
             'gaji' => $gaji
         ]);
@@ -20,7 +20,7 @@ class GajiController extends Controller
         $request->validate([
             'nama_karyawan' => 'required|string',
             'jabatan' => 'required|string',
-            'gaji' => 'required|numeric|integer',
+            'gaji' => 'required|numeric|integer|gte:0',
             'tanggal' => 'required|date',
         ], [
                 'nama_karyawan.required' => 'Nama tidak boleh kosong',
@@ -32,6 +32,7 @@ class GajiController extends Controller
                 'gaji.integer' => 'Gaji harus berupa angka',
                 'tanggal.required' => 'Tanggal tidak boleh kosong',
                 'tanggal.date' => 'Tanggal harus berupa tanggal',
+                'gaji.gte' => 'Gaji tidak boleh kurang dari 0',
             ]);
 
         Gaji::create([
@@ -49,7 +50,7 @@ class GajiController extends Controller
         $request->validate([
             'nama_karyawan' => 'required|string',
             'jabatan' => 'required|string',
-            'gaji' => 'required|numeric|integer',
+            'gaji' => 'required|numeric|integer|gte:0',
             'tanggal' => 'required|date',
         ], [
                 'nama_karyawan.required' => 'Nama tidak boleh kosong',
@@ -61,6 +62,7 @@ class GajiController extends Controller
                 'gaji.integer' => 'Gaji harus berupa angka',
                 'tanggal.required' => 'Tanggal tidak boleh kosong',
                 'tanggal.date' => 'Tanggal harus berupa tanggal',
+                'gaji.gte' => 'Gaji tidak boleh kurang dari 0',
             ]);
 
         Gaji::where('id', $id)->update([

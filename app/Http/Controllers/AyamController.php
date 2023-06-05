@@ -9,7 +9,7 @@ class AyamController extends Controller
 {
     public function index()
     {
-        $ayam = Ayam::where('tanggal_masuk', '!=', null)->get();
+        $ayam = Ayam::where('tanggal_masuk', '!=', null)->orderBy('tanggal_masuk', 'desc')->get();
         return view('admin.pages.dataayam', [
             'ayam' => $ayam
         ]);
@@ -19,9 +19,9 @@ class AyamController extends Controller
     {
         $request->validate([
             'tanggal_masuk' => 'required|date',
-            'jumlah_masuk' => 'required|numeric|integer',
-            'harga_satuan' => 'required|numeric|integer',
-            'mati' => 'required|numeric|integer',
+            'jumlah_masuk' => 'required|numeric|integer|gte:0',
+            'harga_satuan' => 'required|numeric|integer|gte:0',
+            'mati' => 'required|numeric|integer|gte:0|lte:jumlah_masuk',
         ], [
                 'tanggal_masuk.required' => 'Tanggal Masuk tidak boleh kosong',
                 'tanggal_masuk.date' => 'Tanggal Masuk harus berupa tanggal',
@@ -34,6 +34,10 @@ class AyamController extends Controller
                 'mati.required' => 'Mati tidak boleh kosong',
                 'mati.numeric' => 'Mati harus berupa angka',
                 'mati.integer' => 'Mati harus berupa angka',
+                'jumlah_masuk.gte' => 'Jumlah Masuk tidak boleh kurang dari 0',
+                'harga_satuan.gte' => 'Harga Satuan tidak boleh kurang dari 0',
+                'mati.gte' => 'Mati tidak boleh kurang dari 0',
+                'mati.lte' => 'Mati tidak boleh lebih dari Jumlah Masuk',
             ]);
 
         $totalayam = $request->jumlah_masuk - $request->mati;
@@ -55,9 +59,9 @@ class AyamController extends Controller
     {
         $request->validate([
             'tanggal_masuk' => 'required|date',
-            'jumlah_masuk' => 'required|numeric|integer',
-            'harga_satuan' => 'required|numeric|integer',
-            'mati' => 'required|numeric|integer',
+            'jumlah_masuk' => 'required|numeric|integer|gte:0',
+            'harga_satuan' => 'required|numeric|integer|gte:0',
+            'mati' => 'required|numeric|integer|gte:0|lte:jumlah_masuk',
         ], [
                 'tanggal_masuk.required' => 'Tanggal Masuk tidak boleh kosong',
                 'tanggal_masuk.date' => 'Tanggal Masuk harus berupa tanggal',
@@ -68,6 +72,12 @@ class AyamController extends Controller
                 'mati.numeric' => 'Mati harus berupa angka',
                 'mati.required' => 'Mati tidak boleh kosong',
                 'mati.integer' => 'Mati harus berupa angka',
+                'jumlah_masuk.numeric' => 'Jumlah Masuk harus berupa angka',
+                'jumlah_masuk.integer' => 'Jumlah Masuk harus berupa angka',
+                'jumlah_masuk.gte' => 'Jumlah Masuk tidak boleh kurang dari 0',
+                'harga_satuan.gte' => 'Harga Satuan tidak boleh kurang dari 0',
+                'mati.gte' => 'Mati tidak boleh kurang dari 0',
+                'mati.lte' => 'Mati tidak boleh lebih dari Jumlah Masuk',
             ]);
 
         $totalayam = $request->jumlah_masuk - $request->mati;

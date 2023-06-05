@@ -9,7 +9,7 @@ class DistribusiController extends Controller
 {
     public function index()
     {
-        $distribusi = Distribusi::where('tanggal', '!=', null)->get();
+        $distribusi = Distribusi::where('tanggal', '!=', null)->orderBy('tanggal', 'desc')->get();
         return view('admin.pages.datadistribusi', [
             'distribusi' => $distribusi
         ]);
@@ -20,8 +20,8 @@ class DistribusiController extends Controller
         $request->validate([
             'customer' => 'required|string',
             'tanggal' => 'required|date',
-            'total_ayam' => 'required|numeric|integer',
-            'harga_satuan' => 'required|numeric|integer',
+            'total_ayam' => 'required|numeric|integer|gte:0',
+            'harga_satuan' => 'required|numeric|integer|gte:0',
             'contact' => 'required|numeric|min:11',
         ], [
                 'customer.required' => 'Customer tidak boleh kosong',
@@ -37,6 +37,8 @@ class DistribusiController extends Controller
                 'contact.required' => 'Contact tidak boleh kosong',
                 'contact.numeric' => 'Contact harus berupa angka',
                 'contact.min' => 'Contact minimal 11 angka',
+                'total_ayam.gte' => 'Total Ayam tidak boleh kurang dari 0',
+                'harga_satuan.gte' => 'Harga Satuan tidak boleh kurang dari 0',
 
             ]);
 
@@ -60,8 +62,8 @@ class DistribusiController extends Controller
         $request->validate([
             'customer' => 'required|string',
             'tanggal' => 'required|date',
-            'total_ayam' => 'required|numeric|integer',
-            'harga_satuan' => 'required|numeric|integer',
+            'total_ayam' => 'required|numeric|integer|gte:0',
+            'harga_satuan' => 'required|numeric|integer|gte:0',
             'contact' => 'required|numeric|min:11',
         ], [
                 'customer.required' => 'Customer tidak boleh kosong',
@@ -75,6 +77,8 @@ class DistribusiController extends Controller
                 'contact.numeric' => 'Contact harus berupa angka',
                 'contact.required' => 'Contact tidak boleh kosong',
                 'contact.min' => 'Contact minimal 11 angka',
+                'total_ayam.gte' => 'Total Ayam tidak boleh kurang dari 0',
+                'harga_satuan.gte' => 'Harga Satuan tidak boleh kurang dari 0',
             ]);
 
         $totalharga = $request->harga_satuan * $request->total_ayam;
