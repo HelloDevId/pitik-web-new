@@ -27,37 +27,37 @@ class AuthController extends Controller
 
         $user = User::where('email', $credentials['email'])->first();
 
-        if ($user) {
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-
-                return redirect()->intended('/index')->with('loginberhasil', 'login berhasil');
-            } else {
-                return redirect()->intended('/login')->with('loginerror', 'login error');
-            }
-
-        }
-
-
         // if ($user) {
-        //     $userLogin = $user->id_role;
+        //     if (Auth::attempt($credentials)) {
+        //         $request->session()->regenerate();
 
-        //     if ($userLogin == 1) {
-        //         if (Auth::attempt($credentials)) {
-        //             $request->session()->regenerate();
-
-        //             return redirect()->intended('/index')->with('loginberhasil', 'login berhasil');
-        //         } else {
-        //             return redirect()->intended('/login')->with('loginerror', 'login error');
-        //         }
-        //     } elseif ($userLogin == 2) {
-
-        //         return redirect()->intended('/login')->with('bukanadmin', 'login error');
-        //     } elseif ($userLogin == 3) {
-
-        //         return redirect()->intended('/login')->with('failed', 'login error');
+        //         return redirect()->intended('/index')->with('loginberhasil', 'login berhasil');
+        //     } else {
+        //         return redirect()->intended('/login')->with('loginerror', 'login error');
         //     }
+
         // }
+
+
+        if ($user) {
+            $userLogin = $user->id_role;
+
+            if ($userLogin == 1) {
+                if (Auth::attempt($credentials)) {
+                    $request->session()->regenerate();
+
+                    return redirect()->intended('/index')->with('loginberhasil', 'login berhasil');
+                } else {
+                    return redirect()->intended('/login')->with('loginerror', 'login error');
+                }
+            } elseif ($userLogin == 2) {
+
+                return redirect()->intended('/login')->with('bukanadmin', 'login error');
+            } elseif ($userLogin == 3) {
+
+                return redirect()->intended('/login')->with('failed', 'login error');
+            }
+        }
 
     }
 
