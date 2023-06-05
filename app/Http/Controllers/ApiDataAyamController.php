@@ -88,11 +88,13 @@ class ApiDataAyamController extends Controller
     {
         $totalAyam = Ayam::sum('total_ayam');
         $totalMati = Ayam::sum('mati');
+        $ayamMasuk = Ayam::sum('jumlah_masuk');
 
         return response()->json([
             'message' => 'success',
             'total_ayam' => $totalAyam,
-            'total_mati' => $totalMati
+            'total_mati' => $totalMati,
+            'jumlah_masuk' => $ayamMasuk
         ]);
     }
 }

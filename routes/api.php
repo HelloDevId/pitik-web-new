@@ -26,6 +26,15 @@ Route::get('/data-pakan', [ApiDataPakanController::class, 'read']);
 Route::put('/data-pakan/{id}', [ApiDataPakanController::class, 'update']);
 Route::delete('/data-pakan/{id}', [ApiDataPakanController::class, 'delete']);
 
+//data pakan minggu ini
+Route::get('/data-pakan-weeks', [ApiDataPakanController::class, 'jumlahPakanMingguIni']);
+
+//data pakan bulan ini
+Route::get('/data-pakan-month', [ApiDataPakanController::class, 'jumlahPakanBulanIni']);
+
+//stok pakan
+Route::get('/data-pakan-stok', [ApiDataPakanController::class, 'stockPakan']);
+
 //data ovk
 Route::post('/data-ovk', [ApiDataOvkController::class, 'create']);
 Route::get('/data-ovk', [ApiDataOvkController::class, 'read']);

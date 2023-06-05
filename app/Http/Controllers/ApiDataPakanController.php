@@ -81,4 +81,34 @@ class ApiDataPakanController extends Controller
             'datapakan' => $datapakan
         ]);
     }
+
+    public function jumlahPakanMingguIni()
+    {
+        $jumlahPakanMingguIni = Pakan::whereBetween('pembelian', [now()->startOfWeek(), now()->endOfWeek()])->sum('stok_pakan');
+
+        return response()->json([
+            'message' => "success",
+            'jumlah_pakan_minggu_ini' => $jumlahPakanMingguIni
+        ]);
+    }
+
+    public function jumlahPakanBulanIni()
+    {
+        $jumlahPakanBulanIni = Pakan::whereBetween('pembelian', [now()->startOfMonth(), now()->endOfMonth()])->sum('stok_pakan');
+
+        return response()->json([
+            'message' => "success",
+            'jumlah_pakan_bulan_ini' => $jumlahPakanBulanIni
+        ]);
+    }
+
+    public function stockPakan()
+    {
+        $stockPakan = Pakan::sum('stok_pakan');
+
+        return response()->json([
+            'message' => "success",
+            'stock_pakan' => $stockPakan
+        ]);
+    }
 }
