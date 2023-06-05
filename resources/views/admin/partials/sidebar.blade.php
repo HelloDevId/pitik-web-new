@@ -48,12 +48,12 @@
                     <span class="ml-3 item-text">Data OVK</span>
                 </a>
             </li>
-            {{-- <li class="nav-item w-100">
+            <li class="nav-item w-100">
                 <a class="nav-link" href="/datauser">
                     <i class="fe fe-users fe-16"></i>
                     <span class="ml-3 item-text">Data User</span>
                 </a>
-            </li> --}}
+            </li>
             <li class="nav-item w-100">
                 <a class="nav-link" href="/datatenagakerja">
                     <i class="fe fe-user fe-16"></i>

@@ -56,7 +56,7 @@
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->email }}</td>
-                                                <td>{{ $data->user_fullname }}</td>
+                                                <td>{{ $data->nama }}</td>
                                                 <td>
 
                                                     <button class="btn btn-warning btn-sm" data-toggle="modal"
@@ -123,9 +123,8 @@
                                                                 <div class="form-group">
                                                                     <label for="recipient-name" class="col-form-label">Full
                                                                         Name</label>
-                                                                    <input type="text"
-                                                                        value=" {{ $data->user_fullname }}"
-                                                                        name="user_fullname" class="form-control"
+                                                                    <input type="text" value=" {{ $data->nama }}"
+                                                                        name="nama" class="form-control"
                                                                         id="recipient-name">
                                                                 </div>
                                                                 <div class="form-group">
@@ -182,7 +181,7 @@
                                                     <div class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Full
                                                             Name</label>
-                                                        <input type="text" value="" name="user_fullname"
+                                                        <input type="text" value="" name="nama"
                                                             class="form-control" id="recipient-name">
                                                     </div>
                                                     <div class="form-group">

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AyamController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DistribusiController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\VaksinController;
 use App\Http\Controllers\PakanController;
@@ -44,6 +45,12 @@ route::get('/datadistribusi', [DistribusiController::class, 'index'])->middlewar
 route::post('/datadistribusi', [DistribusiController::class, 'store'])->middleware('IsLogin');
 route::put('/datadistribusi/{id}', [DistribusiController::class, 'update'])->middleware('IsLogin');
 route::delete('/datadistribusi/{id}', [DistribusiController::class, 'destroy'])->middleware('IsLogin');
+
+
+Route::get('/datauser', [UserController::class, 'index'])->middleware('IsLogin');
+Route::post('/datauser', [UserController::class, 'store'])->middleware('IsLogin');
+Route::put('/datauser/{id}', [UserController::class, 'update'])->middleware('IsLogin');
+Route::delete('/datauser/{id}', [UserController::class, 'destroy'])->middleware('IsLogin');
 
 route::get('/datatenagakerja', [GajiController::class, 'index'])->middleware('IsLogin');
 route::post('/datatenagakerja', [GajiController::class, 'store'])->middleware('IsLogin');
