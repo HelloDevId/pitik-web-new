@@ -59,13 +59,13 @@ class DatabaseSeeder extends Seeder
             'total_ayam' => null,
         ]);
 
-        Gaji::create([
-            'tanggal' => null,
-            'nama_karyawan' => null,
-            'jabatan' => null,
-            'gaji' => 0,
+        // Gaji::create([
+        //     'tanggal' => null,
+        //     'nama_karyawan' => null,
+        //     'jabatan' => null,
+        //     'gaji' => 0,
 
-        ]);
+        // ]);
 
         Pakan::create([
             'pembelian' => null,

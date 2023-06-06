@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="mb-2 page-title">Data Distribusi Anjing</h2>
+                <h2 class="mb-2 page-title">Data Distribusi</h2>
                 {{-- <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool,
                     built upon the foundations of progressive enhancement, that adds all of these advanced features to any
                     HTML table. </p> --}}
@@ -23,9 +23,9 @@
 
 
                                         <?php
-                                        
+
                                         $nomer = 1;
-                                        
+
                                         ?>
 
                                         @foreach ($errors->all() as $error)
@@ -98,7 +98,7 @@
                                                         <div class="modal-body">
                                                             Yakin Ingin Menghapus Data?
                                                         </div>
-                                                        <form action="/datadistribusi/{{ $data->id }}" method="post">
+                                                        <form action="/datadistribusi2/{{ $data->id }}" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <div class="modal-footer">
@@ -125,7 +125,7 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form action="/datadistribusi/{{ $data->id }}" method="POST">
+                                                        <form action="/datadistribusi2/{{ $data->id }}" method="POST">
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="modal-body">
@@ -169,18 +169,18 @@
                                                                         id="recipient-name">
                                                                 </div>
 
-                                                                <div class="form-group">
+                                                                {{-- <div class="form-group">
                                                                     <label for="recipient-name"
                                                                         class="col-form-label">Payment</label>
                                                                     <input type="text" value="{{ $data->payment }}"
                                                                         name="payment" class="form-control"
                                                                         id="recipient-name">
-                                                                </div>
-                                                                <div class="form-group">
+                                                                </div> --}}
+                                                                {{-- <div class="form-group">
                                                                     <label for="message-text"
                                                                         class="col-form-label">Address</label>
                                                                     <textarea name="address" rows="5" class="form-control" id="message-text">{{ $data->address }}</textarea>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn mb-2 btn-danger"
@@ -207,7 +207,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/datadistribusi" method="POST">
+                                            <form action="/datadistribusi2" method="POST">
                                                 @csrf
                                                 @method('POST')
                                                 <div class="modal-body">

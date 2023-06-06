@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->integer('pendapatan');
             $table->integer('pengeluaran_ayam');
             $table->integer('pengeluaran_pakan');
-            $table->integer('pengeluaran_gaji');
+            // $table->integer('pengeluaran_gaji');
             $table->integer('pengeluaran_vaksin');
             $table->integer('penghasilan');
             $table->timestamps();

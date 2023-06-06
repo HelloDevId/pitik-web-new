@@ -54,12 +54,12 @@
                     <span class="ml-3 item-text">Data User</span>
                 </a>
             </li>
-            <li class="nav-item w-100">
+            {{-- <li class="nav-item w-100">
                 <a class="nav-link" href="/datatenagakerja">
                     <i class="fe fe-user fe-16"></i>
                     <span class="ml-3 item-text">Data Tenaga Kerja</span>
                 </a>
-            </li>
+            </li> --}}
             {{-- <li class="nav-item w-100">
                 <a class="nav-link" href="/datasamplejual">
                     <i class="fe fe-shopping-bag fe-16"></i>
@@ -67,7 +67,7 @@
                 </a>
             </li> --}}
             <li class="nav-item w-100">
-                <a class="nav-link" href="/datadistribusi">
+                <a class="nav-link" href="/datadistribusi2">
                     <i class="fe fe-share fe-16"></i>
                     <span class="ml-3 item-text">Data Distribusi</span>
                 </a>
@@ -90,12 +90,12 @@
                     <span class="ml-3 item-text">Data Pengeluaran Pakan</span>
                 </a>
             </li>
-            <li class="nav-item w-100">
+            {{-- <li class="nav-item w-100">
                 <a class="nav-link" href="/datapengeluarangaji">
                     <i class="fe fe-activity fe-16"></i>
                     <span class="ml-3 item-text">Data Pengeluaran Gaji</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item w-100">
                 <a class="nav-link" href="/datapendapatan">
                     <i class="fe fe-bar-chart-2 fe-16"></i>

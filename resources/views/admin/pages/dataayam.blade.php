@@ -126,7 +126,7 @@
                                                                     <label for="recipient-name"
                                                                         class="col-form-label">Tanggal
                                                                         Masuk</label>
-                                                                    <input type="date"
+                                                                    <input disabled type="date"
                                                                         value="{{ $data->tanggal_masuk }}"
                                                                         name="tanggal_masuk" class="form-control"
                                                                         id="recipient-name">
@@ -186,12 +186,12 @@
                                                 @method('POST')
                                                 <div class="modal-body">
 
-                                                    <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Tanggal
                                                             Masuk</label>
                                                         <input type="date" name="tanggal_masuk" class="form-control"
                                                             id="recipient-name">
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="form-group">
                                                         <label for="recipient-name" class="col-form-label">Jumlah
                                                             Masuk</label>
@@ -336,11 +336,29 @@
     @if (Session::get('gagal'))
         <script>
             Swal.fire(
-                'Success',
+                'Error',
                 'Data Gagal Ditambahkan',
                 'error'
             )
         </script>
     @endif
 
+    @if (Session::get('bulaninisudahada'))
+        <script>
+            Swal.fire(
+                'Error',
+                'Data Bulan Ini Sudah Ada',
+                'error'
+            )
+        </script>
+    @endif
+    @if (Session::get('punyarelasi'))
+        <script>
+            Swal.fire(
+                'Error',
+                'Data Ayam terhubung dengan data distribusi',
+                'error'
+            )
+        </script>
+    @endif
 @endsection

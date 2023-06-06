@@ -41,10 +41,10 @@ route::post('/dataayam', [AyamController::class, 'store'])->middleware('IsLogin'
 route::put('/dataayam/{id}', [AyamController::class, 'update'])->middleware('IsLogin');
 route::delete('/dataayam/{id}', [AyamController::class, 'destroy'])->middleware('IsLogin');
 
-route::get('/datadistribusi', [DistribusiController::class, 'index'])->middleware('IsLogin');
-route::post('/datadistribusi', [DistribusiController::class, 'store'])->middleware('IsLogin');
-route::put('/datadistribusi/{id}', [DistribusiController::class, 'update'])->middleware('IsLogin');
-route::delete('/datadistribusi/{id}', [DistribusiController::class, 'destroy'])->middleware('IsLogin');
+route::get('/datadistribusi2', [DistribusiController::class, 'index'])->middleware('IsLogin');
+route::post('/datadistribusi2', [DistribusiController::class, 'store'])->middleware('IsLogin');
+route::put('/datadistribusi2/{id}', [DistribusiController::class, 'update'])->middleware('IsLogin');
+route::delete('/datadistribusi2/{id}', [DistribusiController::class, 'destroy'])->middleware('IsLogin');
 
 
 Route::get('/datauser', [UserController::class, 'index'])->middleware('IsLogin');
@@ -52,10 +52,10 @@ Route::post('/datauser', [UserController::class, 'store'])->middleware('IsLogin'
 Route::put('/datauser/{id}', [UserController::class, 'update'])->middleware('IsLogin');
 Route::delete('/datauser/{id}', [UserController::class, 'destroy'])->middleware('IsLogin');
 
-route::get('/datatenagakerja', [GajiController::class, 'index'])->middleware('IsLogin');
-route::post('/datatenagakerja', [GajiController::class, 'store'])->middleware('IsLogin');
-route::put('/datatenagakerja/{id}', [GajiController::class, 'update'])->middleware('IsLogin');
-route::delete('/datatenagakerja/{id}', [GajiController::class, 'destroy'])->middleware('IsLogin');
+// route::get('/datatenagakerja', [GajiController::class, 'index'])->middleware('IsLogin');
+// route::post('/datatenagakerja', [GajiController::class, 'store'])->middleware('IsLogin');
+// route::put('/datatenagakerja/{id}', [GajiController::class, 'update'])->middleware('IsLogin');
+// route::delete('/datatenagakerja/{id}', [GajiController::class, 'destroy'])->middleware('IsLogin');
 
 route::get('/dataovk', [VaksinController::class, 'index'])->middleware('IsLogin');
 route::post('/dataovk', [VaksinController::class, 'store'])->middleware('IsLogin');
@@ -91,11 +91,11 @@ Route::post('/datapengeluaranvaksin', [PengeluaranVaksinController::class, 'stor
 Route::put('/datapengeluaranvaksin/{id}', [PengeluaranVaksinController::class, 'update'])->middleware('IsLogin');
 Route::delete('/datapengeluaranvaksin/{id}', [PengeluaranVaksinController::class, 'destroy'])->middleware('IsLogin');
 
-Route::get('/datapengeluarangaji', [PengeluaranGajiController::class, 'index'])->middleware('IsLogin');
-Route::get('/datapengeluarangaji/{id}', [PengeluaranGajiController::class, 'pengeluarangajidetail'])->middleware('IsLogin');
-Route::post('/datapengeluarangaji', [PengeluaranGajiController::class, 'store'])->middleware('IsLogin');
-Route::put('/datapengeluarangaji/{id}', [PengeluaranGajiController::class, 'update'])->middleware('IsLogin');
-Route::delete('/datapengeluarangaji/{id}', [PengeluaranGajiController::class, 'destroy'])->middleware('IsLogin');
+// Route::get('/datapengeluarangaji', [PengeluaranGajiController::class, 'index'])->middleware('IsLogin');
+// Route::get('/datapengeluarangaji/{id}', [PengeluaranGajiController::class, 'pengeluarangajidetail'])->middleware('IsLogin');
+// Route::post('/datapengeluarangaji', [PengeluaranGajiController::class, 'store'])->middleware('IsLogin');
+// Route::put('/datapengeluarangaji/{id}', [PengeluaranGajiController::class, 'update'])->middleware('IsLogin');
+// Route::delete('/datapengeluarangaji/{id}', [PengeluaranGajiController::class, 'destroy'])->middleware('IsLogin');
 
 route::post('/addiddistribusi', [PendapatanController::class, 'addiddistribusi'])->middleware('IsLogin');
 route::delete('/deleteiddistribusi/{id}', [PendapatanController::class, 'deleteiddistribusi'])->middleware('IsLogin');
@@ -109,8 +109,8 @@ Route::delete('/deleteidpakan/{id}', [PengeluaranPakanController::class, 'delete
 Route::post('/addidvaksin', [PengeluaranVaksinController::class, 'addidvaksin'])->middleware('IsLogin');
 Route::delete('/deleteidvaksin/{id}', [PengeluaranVaksinController::class, 'deleteidvaksin'])->middleware('IsLogin');
 
-Route::post('/addidgaji', [PengeluaranGajiController::class, 'addidgaji'])->middleware('IsLogin');
-Route::delete('/deleteidgaji/{id}', [PengeluaranGajiController::class, 'deleteidgaji'])->middleware('IsLogin');
+// Route::post('/addidgaji', [PengeluaranGajiController::class, 'addidgaji'])->middleware('IsLogin');
+// Route::delete('/deleteidgaji/{id}', [PengeluaranGajiController::class, 'deleteidgaji'])->middleware('IsLogin');
 
 Route::get('/datapenghasilan', [PenghasilanController::class, 'index'])->middleware('IsLogin');
 Route::post('/datapenghasilan', [PenghasilanController::class, 'store'])->middleware('IsLogin');

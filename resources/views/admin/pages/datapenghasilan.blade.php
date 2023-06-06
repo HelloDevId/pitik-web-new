@@ -48,7 +48,7 @@
                                             <th>Pengeluaran Ayam</th>
                                             <th>Pengeluaran Pakan</th>
                                             <th>Pengeluaran Vaksin</th>
-                                            <th>Pengeluaran Gaji</th>
+                                            {{-- <th>Pengeluaran Gaji</th> --}}
                                             <th>Penghasilan</th>
                                             <th>Action</th>
                                         </tr>
@@ -65,7 +65,7 @@
                                                 <td>Rp. {{ number_format($data->pengeluaran_ayam) }}</td>
                                                 <td>Rp. {{ number_format($data->pengeluaran_pakan) }}</td>
                                                 <td>Rp. {{ number_format($data->pengeluaran_vaksin) }}</td>
-                                                <td>Rp. {{ number_format($data->pengeluaran_gaji) }}</td>
+                                                {{-- <td>Rp. {{ number_format($data->pengeluaran_gaji) }}</td> --}}
                                                 <td>Rp. {{ number_format($data->penghasilan) }}</td>
 
                                                 <td>
@@ -257,17 +257,17 @@
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-
+                                                                {{--
                                                                 <div class="form-group">
                                                                     <label for="simple-select2">Data Pengeluaran
                                                                         Gaji</label>
                                                                     <select name="pengeluaran_gaji" class="form-control">
-                                                                        {{-- <option selected
+                                                                        <option selected
                                                                             value="{{ $data->pengeluaran_gaji }}">
                                                                             {{ $data->tanggal }}
                                                                             - Rp.
                                                                             {{ number_format($data->pengeluaran_gaji) }}
-                                                                        </option> --}}
+                                                                        </option>
                                                                         @foreach ($datapengeluarangaji as $data)
                                                                             <option value="{{ $data->total }}">
                                                                                 {{ $data->tanggal }}
@@ -275,7 +275,7 @@
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
-                                                                </div>
+                                                                </div> --}}
 
 
                                                             </div>
@@ -404,7 +404,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <label for="simple-select2">Data Pengeluaran Gaji</label>
                                                         <select name="pengeluaran_gaji" class="form-control">
                                                             <option selected disabled>Pilih Data Pengeluaran Gaji</option>
@@ -415,7 +415,7 @@
                                                                 </option>
                                                             @endforeach
                                                         </select>
-                                                    </div>
+                                                    </div> --}}
 
 
                                                 </div>
