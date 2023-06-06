@@ -83,7 +83,7 @@ Route::get('/datapengeluaranpakan', [PengeluaranPakanController::class, 'index']
 Route::get('/datapengeluaranpakan/{id}', [PengeluaranPakanController::class, 'pengeluaranpakandetail'])->middleware('IsLogin');
 Route::post('/datapengeluaranpakan', [PengeluaranPakanController::class, 'store'])->middleware('IsLogin');
 Route::put('/datapengeluaranpakan/{id}', [PengeluaranPakanController::class, 'update'])->middleware('IsLogin');
-Route::delete('/datapengeluaranpakan/{id}', [PengeluaranPakanController::class, 'destroy'])->middleware('IsLogin');
+Route::delete('/datapengeluaranpakan/{id}', [PengeluaranPakanController::class, 'delete'])->middleware('IsLogin');
 
 Route::get('/datapengeluaranvaksin', [PengeluaranVaksinController::class, 'index'])->middleware('IsLogin');
 Route::get('/datapengeluaranvaksin/{id}', [PengeluaranVaksinController::class, 'pengeluaranvaksindetail'])->middleware('IsLogin');
