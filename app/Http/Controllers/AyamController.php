@@ -89,60 +89,30 @@ class AyamController extends Controller
                 'mati.lte' => 'Mati tidak boleh lebih dari Jumlah Masuk',
             ]);
 
-
-
                 $dataayam = Ayam::find($id);
                 $totalayamlama = $dataayam->total_ayam;
                 $jumlahmasuklama = $dataayam->jumlah_masuk;
 
-                if($request->jumlah_masuk >= $jumlahmasuklama){
+                if($request->jumlah_masuk > $jumlahmasuklama){
                     $totalayam = $totalayamlama + ($request->jumlah_masuk - $jumlahmasuklama);
                     $totalayamakhir = $totalayam - $request->mati;
-
-                    $totalharga = $request->harga_satuan * $request->jumlah_masuk;
-
-                    Ayam::find($id)->update([
-                        // 'tanggal_masuk' => date('Y-m-d'),
-                        'jumlah_masuk' => $request->jumlah_masuk,
-                        'harga_satuan' => $request->harga_satuan,
-                        'total_harga' => $totalharga,
-                        'mati' => $request->mati,
-                        'total_ayam' => $totalayamakhir
-                    ]);
-
-                    return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
-                }elseif($request->jumlah_masuk <= $jumlahmasuklama){
+                }else{
                     $totalayam = $totalayamlama - ($jumlahmasuklama - $request->jumlah_masuk);
                     $totalayamakhir = $totalayam - $request->mati;
-
-                    $totalharga = $request->harga_satuan * $request->jumlah_masuk;
-
-                    Ayam::find($id)->update([
-                        // 'tanggal_masuk' => date('Y-m-d'),
-                        'jumlah_masuk' => $request->jumlah_masuk,
-                        'harga_satuan' => $request->harga_satuan,
-                        'total_harga' => $totalharga,
-                        'mati' => $request->mati,
-                        'total_ayam' => $totalayamakhir
-                    ]);
-
-                    return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
-                }else{
-                    $totalayamakhir = $request->jumlah_masuk - $request->mati;
-                    $totalharga = $request->harga_satuan * $request->jumlah_masuk;
-
-                    Ayam::find($id)->update([
-                        // 'tanggal_masuk' => date('Y-m-d'),
-                        'jumlah_masuk' => $request->jumlah_masuk,
-                        'harga_satuan' => $request->harga_satuan,
-                        'total_harga' => $totalharga,
-                        'mati' => $request->mati,
-                        'total_ayam' => $totalayamakhir
-                    ]);
-
-                    return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
                 }
 
+                $totalharga = $request->harga_satuan * $request->jumlah_masuk;
+
+                Ayam::find($id)->update([
+                    // 'tanggal_masuk' => date('Y-m-d'),
+                    'jumlah_masuk' => $request->jumlah_masuk,
+                    'harga_satuan' => $request->harga_satuan,
+                    'total_harga' => $totalharga,
+                    'mati' => $request->mati,
+                    'total_ayam' => $totalayamakhir
+                ]);
+
+                return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
         }
 
 

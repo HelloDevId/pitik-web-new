@@ -23,9 +23,9 @@
 
 
                                         <?php
-
+                                        
                                         $nomer = 1;
-
+                                        
                                         ?>
 
                                         @foreach ($errors->all() as $error)
@@ -74,8 +74,8 @@
                                                 </td> --}}
                                                 <td>
 
-                                                    <button class="btn btn-warning btn-sm" data-toggle="modal"
-                                                        data-target="#editModal{{ $data->id }}">Edit</button>
+                                                    {{-- <button class="btn btn-warning btn-sm" data-toggle="modal"
+                                                        data-target="#editModal{{ $data->id }}">Edit</button> --}}
 
                                                     <button class="btn btn-danger btn-sm" data-toggle="modal"
                                                         data-target="#deleteModal{{ $data->id }}">Delete</button>
@@ -154,8 +154,7 @@
                                                                 <div class="form-group">
                                                                     <label for="recipient-name" class="col-form-label">Harga
                                                                         Satuan</label>
-                                                                    <input type="text"
-                                                                        value="{{ $data->harga_satuan }}"
+                                                                    <input type="text" value="{{ $data->harga_satuan }}"
                                                                         name="harga_satuan" class="form-control"
                                                                         id="recipient-name">
                                                                 </div>
