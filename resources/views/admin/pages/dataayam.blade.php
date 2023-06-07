@@ -361,4 +361,31 @@
             )
         </script>
     @endif
+    @if (Session::get('jumlahayamjuallebih'))
+        <script>
+            Swal.fire(
+                'Error',
+                'Jumlah Ayam Terjual Lebih Banyak Dari Jumlah Ayam',
+                'error'
+            )
+        </script>
+    @endif
+    @if (Session::get('tidakbisahapus'))
+        <script>
+            Swal.fire(
+                'Error',
+                'Data bulan sebelumnya tidak bisa di hapus',
+                'error'
+            )
+        </script>
+    @endif
+    @if (Session::get('tidakbisaedit'))
+        <script>
+            Swal.fire(
+                'Error',
+                'Data bulan sebelumnya tidak bisa di ubah',
+                'error'
+            )
+        </script>
+    @endif
 @endsection

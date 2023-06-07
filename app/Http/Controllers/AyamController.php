@@ -45,7 +45,7 @@ class AyamController extends Controller
         $cekpembelianayam = Ayam::whereMonth('tanggal_masuk', date('m'))->whereYear('tanggal_masuk', date('Y'))->first();
         if ($cekpembelianayam) {
             return redirect('/dataayam')->with('bulaninisudahada', 'Data Pembelian Ayam Bulan Ini Sudah Ada');
-        }else{
+        } else {
 
             $totalayam = $request->jumlah_masuk - $request->mati;
             $totalharga = $request->harga_satuan * $request->jumlah_masuk;
@@ -89,17 +89,21 @@ class AyamController extends Controller
                 'mati.lte' => 'Mati tidak boleh lebih dari Jumlah Masuk',
             ]);
 
-                $dataayam = Ayam::find($id);
-                $totalayamlama = $dataayam->total_ayam;
-                $jumlahmasuklama = $dataayam->jumlah_masuk;
+        $datadistribusi = Distribusi::whereMonth('tanggal', date('m'))->whereYear('tanggal', date('Y'))->sum('total_ayam');
+        $dataayamjual = $datadistribusi;
 
-                if($request->jumlah_masuk > $jumlahmasuklama){
-                    $totalayam = $totalayamlama + ($request->jumlah_masuk - $jumlahmasuklama);
-                    $totalayamakhir = $totalayam - $request->mati;
-                }else{
-                    $totalayam = $totalayamlama - ($jumlahmasuklama - $request->jumlah_masuk);
-                    $totalayamakhir = $totalayam - $request->mati;
-                }
+        $dataayam = Ayam::find($id);
+        $totalayamlama = $dataayam->total_ayam;
+        $jumlahmasuklama = $dataayam->jumlah_masuk;
+
+
+        if ($dataayamjual > $request->jumlah_masuk - $request->mati) {
+            return redirect('/dataayam')->with('jumlahayamjuallebih', 'Jumlah Ayam Terjual Lebih Banyak Dari Jumlah Ayam');
+        } else {
+
+            if ($request->jumlah_masuk > $jumlahmasuklama) {
+                $totalayam = $totalayamlama + ($request->jumlah_masuk - $jumlahmasuklama);
+                $totalayamakhir = $totalayam - $request->mati;
 
                 $totalharga = $request->harga_satuan * $request->jumlah_masuk;
 
@@ -113,20 +117,53 @@ class AyamController extends Controller
                 ]);
 
                 return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
+
+            } elseif ($request->jumlah_masuk < $jumlahmasuklama) {
+                $totalayam = $totalayamlama - ($jumlahmasuklama - $request->jumlah_masuk);
+                $totalayamakhir = $totalayam - $request->mati;
+
+                $totalharga = $request->harga_satuan * $request->jumlah_masuk;
+
+                Ayam::find($id)->update([
+                    // 'tanggal_masuk' => date('Y-m-d'),
+                    'jumlah_masuk' => $request->jumlah_masuk,
+                    'harga_satuan' => $request->harga_satuan,
+                    'total_harga' => $totalharga,
+                    'mati' => $request->mati,
+                    'total_ayam' => $totalayamakhir
+                ]);
+
+                return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
+            } else {
+                $totalayamakhir = $request->jumlah_masuk - $request->mati;
+                $totalharga = $request->harga_satuan * $request->jumlah_masuk;
+
+                Ayam::find($id)->update([
+                    // 'tanggal_masuk' => date('Y-m-d'),
+                    'jumlah_masuk' => $request->jumlah_masuk,
+                    'harga_satuan' => $request->harga_satuan,
+                    'total_harga' => $totalharga,
+                    'mati' => $request->mati,
+                    'total_ayam' => $totalayamakhir
+                ]);
+
+                return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
+            }
         }
+
+    }
 
 
     public function destroy($id)
     {
-
         $cekdatadistributor = Distribusi::wheremonth('tanggal', date('m'))->whereyear('tanggal', date('Y'))->first();
-        if ($cekdatadistributor) {
-            return redirect('/dataayam')->with('punyarelasi', 'Data Distributor Bulan Ini Sudah Ada');
-        }else{
 
-            Ayam::find($id)->delete();
-            return redirect('/dataayam')->with('delete', 'Data Berhasil Dihapus');
+            if ($cekdatadistributor) {
+                return redirect('/dataayam')->with('punyarelasi', 'Data ayam tidak bisa dihapus karena sudah ada data distribusi bulan ini');
+            } else {
+                Ayam::find($id)->delete();
+                return redirect('/dataayam')->with('delete', 'Data Berhasil Dihapus');
+            }
         }
 
-    }
 }

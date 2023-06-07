@@ -57,7 +57,7 @@
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->ayam->tanggal_masuk }}</td>
-                                                <td>{{ $data->ayam->total_ayam }} Ekor</td>
+                                                <td>{{ $data->ayam->jumlah_masuk }} Ekor</td>
                                                 <td>Rp. {{ number_format($data->ayam->total_harga) }}</td>
                                                 <td>
                                                     <button class="btn btn-danger btn-sm" data-toggle="modal"
@@ -167,7 +167,7 @@
                                                             @foreach ($tampildataayam as $ayam)
                                                                 <option value="{{ $ayam->id }}">
                                                                     {{ $ayam->tanggal_masuk }} -
-                                                                    {{ $ayam->total_ayam }} Ekor
+                                                                    {{ $ayam->jumlah_masuk }} Ekor
                                                                     - Rp. {{ number_format($ayam->total_harga) }}
                                                                 </option>
                                                             @endforeach

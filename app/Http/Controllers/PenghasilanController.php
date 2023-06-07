@@ -26,7 +26,7 @@ class PenghasilanController extends Controller
         $datapengeluaranayam = DB::table('tb_pengeluaran_ayam')
             ->join('tb_detail_pengeluaran_ayam', 'tb_pengeluaran_ayam.id', '=', 'tb_detail_pengeluaran_ayam.id_pengeluaran_ayam')
             ->join('tb_ayam', 'tb_detail_pengeluaran_ayam.id_ayam', '=', 'tb_ayam.id')
-            ->select('tb_pengeluaran_ayam.*', DB::raw('SUM(tb_ayam.total_harga) as total'), DB::raw('SUM(tb_ayam.total_ayam) as jumlahayam'), )
+            ->select('tb_pengeluaran_ayam.*', DB::raw('SUM(tb_ayam.total_harga) as total'), DB::raw('SUM(tb_ayam.jumlah_masuk) as jumlahayam'), )
             ->orderBy('tb_pengeluaran_ayam.tanggal', 'desc')
             ->groupBy('tb_pengeluaran_ayam.id')
             ->get();
