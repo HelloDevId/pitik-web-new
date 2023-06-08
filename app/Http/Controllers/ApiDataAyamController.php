@@ -10,33 +10,39 @@ class ApiDataAyamController extends Controller
     public function create(Request $request)
     {
         $data = $request->validate([
-            'tanggal_masuk' => 'required',
+            // 'tanggal_masuk' => 'required',
             'jumlah_masuk' => 'required',
             'harga_satuan' => 'required',
             'mati' => 'required'
         ]);
+        $bulanIni = date('Y-m');
+        $cekPembelianAyam = Ayam::where('tanggal_masuk', 'like', $bulanIni.'%')->first();
+        if ($cekPembelianAyam) {
+            return response()->json([
+                'message' => 'Data pembelian ayam bulan ini sudah ada'
+            ], 400);
+        } else {
+            $total_harga = $data['harga_satuan'] * $data['jumlah_masuk'];
+            $total = $data['jumlah_masuk'] - $data['mati'];
 
-        $total_harga = $data['harga_satuan'] * $data['jumlah_masuk'];
-        $total = $data['jumlah_masuk'] - $data['mati'];
-
-        $dataayam = Ayam::create([
-            'tanggal_masuk' => $data['tanggal_masuk'],
-            'jumlah_masuk' => $data['jumlah_masuk'],
-            'harga_satuan' => $data['harga_satuan'],
-            'mati' => $data['mati'],
-            'total_harga' => $total_harga,
-            'total_ayam' => $total
-        ]);
-
-        return response()->json([
-            'message' => 'success',
-            'dataayam' => $dataayam
-        ]);
+            $dataayam = Ayam::create([
+                'tanggal_masuk' => date('Y-m-d'),
+                'jumlah_masuk' => $data['jumlah_masuk'],
+                'harga_satuan' => $data['harga_satuan'],
+                'mati' => $data['mati'],
+                'total_harga' => $total_harga,
+                'total_ayam' => $total
+            ]);
+            return response()->json([
+                'message' => 'success',
+                'dataayam' => $dataayam
+            ]);
+        }
     }
 
     public function read()
     {
-        $dataayam = Ayam::orderByDesc('id')->get();
+        $dataayam = Ayam::whereNotNull('tanggal_masuk')->orderByDesc('id')->get();
 
         return response()->json([
             "message" => "success",
@@ -47,7 +53,7 @@ class ApiDataAyamController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'tanggal_masuk' => 'required',
+            // 'tanggal_masuk' => 'required',
             'jumlah_masuk' => 'required',
             'harga_satuan' => 'required',
             'mati' => 'required'
@@ -59,7 +65,7 @@ class ApiDataAyamController extends Controller
         $total = $data['jumlah_masuk'] - $data['mati'];
 
         $dataayam->update([
-            'tanggal_masuk' => $data['tanggal_masuk'],
+            // 'tanggal_masuk' => $data['tanggal_masuk'],
             'jumlah_masuk' => $data['jumlah_masuk'],
             'harga_satuan' => $data['harga_satuan'],
             'mati' => $data['mati'],
