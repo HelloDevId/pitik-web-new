@@ -148,7 +148,7 @@ class DistribusiController extends Controller
         $cekdatadistribusi = Distribusi::wheremonth('tanggal', date('m'))->whereyear('tanggal', date('Y'))->count();
         $dataayambulanini = Ayam::where('tanggal_masuk', '!=', null)->whereMonth('tanggal_masuk', date('m'))->first();
 
-        if ($dataayambulanini == null or $dataayambulanini == '1' or $cekdatadistribusi >= '1' ) {
+        if ($dataayambulanini == null or $dataayambulanini == '1' ) {
             return redirect('/datadistribusi2')->with('tidakbisahapus', 'Data Ayam Bulan Ini Tidak Cukup');
         } else {
 
