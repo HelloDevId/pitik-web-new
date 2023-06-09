@@ -361,6 +361,15 @@
             )
         </script>
     @endif
+    @if (Session::get('punyarelasi2'))
+        <script>
+            Swal.fire(
+                'Error',
+                'Data Ayam terhubung dengan data Pengeluaran ayam',
+                'error'
+            )
+        </script>
+    @endif
     @if (Session::get('jumlahayamjuallebih'))
         <script>
             Swal.fire(

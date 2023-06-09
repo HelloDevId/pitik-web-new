@@ -360,5 +360,14 @@
             )
         </script>
     @endif
+    @if (Session::get('punyarelasi'))
+        <script>
+            Swal.fire(
+                'Error',
+                'Data vaksin terhubung dengan data pengeluaran vaksin',
+                'error'
+            )
+        </script>
+    @endif
 
 @endsection

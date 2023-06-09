@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ayam;
+use App\Models\DetailAyam;
 use App\Models\Distribusi;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -119,8 +120,7 @@ class AyamController extends Controller
                     ]);
 
                     return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
-                }
-                else {
+                } else {
                     $totalayamakhir = $totalayam + ($dataayammatilama - $request->mati);
 
                     $totalharga = $request->harga_satuan * $request->jumlah_masuk;
@@ -153,8 +153,7 @@ class AyamController extends Controller
                     ]);
 
                     return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
-                }
-                else {
+                } else {
                     $totalayamakhir = $totalayam + ($dataayammatilama - $request->mati);
 
                     $totalharga = $request->harga_satuan * $request->jumlah_masuk;
@@ -201,12 +200,16 @@ class AyamController extends Controller
         //     return redirect('/dataayam')->with('delete', 'Data Berhasil Dihapus');
         // }
 
+        $detailpengeluaranayam = DetailAyam::where('id_ayam', $id)->first();
+
         $cekdataayam = Ayam::whereMonth('tanggal_masuk', date('m'))->whereYear('tanggal_masuk', date('Y'))->first();
 
         $cekdatadistributor = Distribusi::wheremonth('tanggal', date('m'))->whereyear('tanggal', date('Y'))->first();
 
         if ($cekdatadistributor) {
             return redirect('/dataayam')->with('punyarelasi', 'Data ayam tidak bisa dihapus karena sudah ada data distribusi bulan ini');
+        } elseif ($detailpengeluaranayam) {
+            return redirect('/dataayam')->with('punyarelasi2', 'Data ayam tidak bisa dihapus karena sudah ada data pengeluaran ayam bulan ini');
         } elseif ($cekdataayam == null or $cekdataayam == '1') {
             return redirect('/dataayam')->with('tidakbisahapus', 'Data ayam tidak bisa dihapus karena sudah ada data ayam bulan ini');
         } else {

@@ -428,5 +428,14 @@
             )
         </script>
     @endif
+    @if (Session::get('punyarelasi'))
+        <script>
+            Swal.fire(
+                'Error',
+                'Data distribusi ayam terhubung dengan data pendapatan',
+                'error'
+            )
+        </script>
+    @endif
 
 @endsection

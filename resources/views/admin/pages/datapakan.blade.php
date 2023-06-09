@@ -350,5 +350,13 @@
             )
         </script>
     @endif
-
+    @if (Session::get('punyarelasi'))
+        <script>
+            Swal.fire(
+                'Error',
+                'Data pakan terhubung dengan data pengeluaran pakan',
+                'error'
+            )
+        </script>
+    @endif
 @endsection
