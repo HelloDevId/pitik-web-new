@@ -102,13 +102,13 @@ class AyamController extends Controller
             return redirect('/dataayam')->with('jumlahayamjuallebih', 'Jumlah Ayam Terjual Lebih Banyak Dari Jumlah Ayam');
         } else {
 
-            if ($request->jumlah_masuk >= $jumlahmasuklama) {
-                $totalayam = $totalayamlama + ($request->jumlah_masuk - $jumlahmasuklama);
+            if ($request->jumlah_masuk >= $jumlahmasuklama) { // Jika Jumlah Masuk Baru Lebih Besar Dari Jumlah Masuk Lama
+                $totalayam = $totalayamlama + ($request->jumlah_masuk - $jumlahmasuklama); // Total Ayam Lama Ditambah Jumlah Masuk Baru - Jumlah Masuk Lama
 
-                if ($request->mati >= $dataayammatilama) {
-                    $totalayamakhir = $totalayam - ($request->mati - $dataayammatilama);
+                if ($request->mati >= $dataayammatilama) { // Jika Jumlah Mati Baru Lebih Besar Dari Jumlah Mati Lama
+                    $totalayamakhir = $totalayam - ($request->mati - $dataayammatilama); // Total Ayam Lama Dikurang Jumlah Mati Baru - Jumlah Mati Lama
 
-                    $totalharga = $request->harga_satuan * $request->jumlah_masuk;
+                    $totalharga = $request->harga_satuan * $request->jumlah_masuk; // Total Harga Baru
 
                     Ayam::find($id)->update([
                         'jumlah_masuk' => $request->jumlah_masuk,
@@ -119,7 +119,8 @@ class AyamController extends Controller
                     ]);
 
                     return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
-                } else {
+                }
+                else {
                     $totalayamakhir = $totalayam + ($dataayammatilama - $request->mati);
 
                     $totalharga = $request->harga_satuan * $request->jumlah_masuk;
@@ -152,7 +153,8 @@ class AyamController extends Controller
                     ]);
 
                     return redirect('/dataayam')->with('update', 'Data Berhasil Diubah');
-                } else {
+                }
+                else {
                     $totalayamakhir = $totalayam + ($dataayammatilama - $request->mati);
 
                     $totalharga = $request->harga_satuan * $request->jumlah_masuk;
